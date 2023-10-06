@@ -19,6 +19,8 @@ const config: Config = {
       palePurple: '#F8DEFF',
       skyMagenta: '#bd70b1',
       plum: '#a0398a',
+      white: '#fff',
+      black: '#000',
     },
   },
   plugins: [],
