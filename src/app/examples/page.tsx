@@ -1,8 +1,9 @@
-import CustomButton from '@/components/CustomButton';
-import Spinner from '@/components/Spinner';
-import Card from '@/components/Card';
+import CustomButton from '@/components/UI/CustomButton';
+import CustomButton2 from '@/components/UI/CustomButton2';
+import Spinner from '@/components/SmallSpinner';
+import Card from '@/components/UI/BaseCard';
 import BackgroundSpinner from '@/components/BackgroundSpinner';
-import Popup from '@/components/Popup';
+import Popup from '@/components/UI/CustomPopup';
 
 export default function Examples() {
   return (
@@ -11,6 +12,7 @@ export default function Examples() {
         <Popup></Popup>
       </div>
       <CustomButton></CustomButton>
+      <CustomButton2></CustomButton2>
       <div className="mx-auto">
         <Spinner></Spinner>
       </div>
