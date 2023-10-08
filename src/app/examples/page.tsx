@@ -4,9 +4,13 @@ import Spinner from '@/components/SmallSpinner';
 import Card from '@/components/UI/BaseCard';
 import BackgroundSpinner from '@/components/BackgroundSpinner';
 import Popup from '@/components/UI/CustomPopup';
+import Header from '@/components/layouts/Header';
+import Footer from '@/components/layouts/Footer';
 
 export default function Examples() {
   return (
+    <>
+    <Header />
     <main className="mx-auto grid items-center justify-center">
       <div className="hidden">
         <Popup></Popup>
@@ -21,5 +25,7 @@ export default function Examples() {
         <BackgroundSpinner></BackgroundSpinner>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }
