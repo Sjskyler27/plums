@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const AccordionItem = () => {
+export const TopicItem = () => {
   return <div>AccordionItem</div>;
 };
