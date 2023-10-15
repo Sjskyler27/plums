@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 interface Link {
   text: string;
   url: string;
+  type: string; // Add 'type' to the Link interface
 }
+
 interface Props {
   title: string;
   links: Link[];
@@ -28,17 +31,21 @@ const TopicItem: React.FC<Props> = ({ title, links }) => {
         </span>
       </div>
       {isOpen && (
-        <div className="bg-white border-l-4 border-purple-500 pl-4 mt-2">
+        <div className="bg-palePurple border-l-4 border-skyMagenta pl-4 mt-2">
           {links.map((link, index) => (
-            <a
+            <div
               key={index}
-              href={link.url}
-              className="block p-2 hover:bg-purple-100 transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
+              className="flex items-center p-2 hover:bg-blue transition-colors duration-300"
             >
-              {link.text}
-            </a>
+              <img
+                src={`@/icons/${link.type}.png`} // Dynamically generate the icon URL
+                alt={`${link.type}`}
+                className="w-6 h-6 mr-2"
+              />
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                {link.text}
+              </a>
+            </div>
           ))}
         </div>
       )}

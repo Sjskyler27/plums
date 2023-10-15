@@ -10,10 +10,26 @@ import TopicItem from '@/components/TopicItem';
 
 export default function Examples() {
   const mathLinks = [
-    { text: 'MATH FOR THE REAL WORLD', url: '#path_to_pdf' },
-    { text: 'FIRST JUMP INTO CALCULUS', url: '#path_to_txt' },
-    { text: 'DERIVATIVES FOR NEWBIES', url: '#path_to_video' },
-    { text: 'TRIGONOMETRY EQUATIONS', url: '#path_to_page' },
+    {
+      text: 'MATH FOR THE REAL WORLD',
+      type: 'link', // Use a colon (:) for assignment, not an equal sign (=)
+      url: 'https://content.byui.edu/file/fb4c2d20-04c3-463d-93f6-725064a8b15d/18/fdmat108syllabus.html',
+    },
+    {
+      text: 'FIRST JUMP INTO CALCULUS',
+      type: 'youtube', // Use a colon (:) for assignment, not an equal sign (=)
+      url: '#path_to_txt',
+    },
+    {
+      text: 'DERIVATIVES FOR NEWBIES',
+      type: 'link', // Use a colon (:) for assignment, not an equal sign (=)
+      url: '#path_to_video',
+    },
+    {
+      text: 'TRIGONOMETRY EQUATIONS',
+      type: 'link', // Use a colon (:) for assignment, not an equal sign (=)
+      url: '#path_to_page',
+    },
   ];
   return (
     <>

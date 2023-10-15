@@ -21,6 +21,7 @@ const config: Config = {
       plum: '#a0398a',
       white: '#fff',
       black: '#000',
+      blue: '#2ca5ff',
     },
   },
   plugins: [],
