@@ -1,3 +1,4 @@
+'use client';
 import CustomButton from '@/components/UI/CustomButton';
 import Spinner from '@/components/SmallSpinner';
 import Card from '@/components/UI/BaseCard';
@@ -5,6 +6,8 @@ import BackgroundSpinner from '@/components/BackgroundSpinner';
 import Popup from '@/components/UI/CustomPopup';
 import Header from '@/components/layouts/Header';
 import Footer from '@/components/layouts/Footer';
+import TopicItem from '@/components/TopicItem';
+import { mathLinks, religionLinks } from '@/data/topicData';
 
 export default function Examples() {
   return (
@@ -27,6 +30,10 @@ export default function Examples() {
         </Card>
         <div className="hidden">
           <BackgroundSpinner></BackgroundSpinner>
+        </div>
+        <div className="p-10">
+          <TopicItem title="MATHEMATICS" links={mathLinks} />
+          <TopicItem title="RELIGION" links={religionLinks} />
         </div>
       </main>
       <Footer />

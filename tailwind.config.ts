@@ -13,6 +13,19 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      maxHeight: {
+        '0': '0',
+        full: '100%',
+      },
+      transitionProperty: {
+        'max-height': 'max-height',
+      },
+      transitionDuration: {
+        '300': '0.3s',
+      },
+      transitionTimingFunction: {
+        ease: 'ease',
+      },
     },
     colors: {
       byzantium: '#820263',
@@ -21,6 +34,8 @@ const config: Config = {
       plum: '#a0398a',
       white: '#fff',
       black: '#000',
+      blue: '#2ca5ff',
+      darkBlue: '#2c3dd3',
     },
   },
   plugins: [],
