@@ -4,7 +4,7 @@ import Image from 'next/image';
 interface Link {
   text: string;
   url: string;
-  type: string; // Add 'type' to the Link interface
+  type: string;
 }
 
 interface Props {
@@ -22,7 +22,9 @@ const TopicItem: React.FC<Props> = ({ title, links }) => {
   return (
     <div className="w-full mb-4">
       <div
-        className="bg-byzantium text-white text-lg font-bold p-4 cursor-pointer hover:byzantium"
+        className={`bg-byzantium text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg ${
+          !isOpen ? 'rounded-b-lg' : '' // Add rounded corners to the bottom when open
+        }`}
         onClick={toggleOpen}
       >
         {title}
@@ -31,18 +33,21 @@ const TopicItem: React.FC<Props> = ({ title, links }) => {
         </span>
       </div>
       {isOpen && (
-        <div className="bg-palePurple border-l-4 border-skyMagenta pl-4 mt-2">
+        <div className="bg-palePurple border-l-4 border-b-4 border-skyMagenta pl-4 rounded-b-lg">
           {links.map((link, index) => (
-            <div
-              key={index}
-              className="flex items-center p-2 hover:bg-blue transition-colors duration-300"
-            >
-              <img
-                src={`@/icons/${link.type}.png`} // Dynamically generate the icon URL
-                alt={`${link.type}`}
-                className="w-6 h-6 mr-2"
-              />
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
+            <div key={index}>
+              <a
+                className="flex items-center p-2 text-blue hover:text-darkBlue transition-colors duration-300"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={`/icons/${link.type}.png`}
+                  alt={`${link.type}`}
+                  width={24}
+                  height={24}
+                />
                 {link.text}
               </a>
             </div>

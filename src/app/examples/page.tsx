@@ -18,16 +18,16 @@ export default function Examples() {
     {
       text: 'FIRST JUMP INTO CALCULUS',
       type: 'youtube', // Use a colon (:) for assignment, not an equal sign (=)
-      url: '#path_to_txt',
+      url: 'https://www.youtube.com/watch?v=5yfh5cf4-0w',
     },
     {
       text: 'DERIVATIVES FOR NEWBIES',
-      type: 'link', // Use a colon (:) for assignment, not an equal sign (=)
+      type: 'pdf', // Use a colon (:) for assignment, not an equal sign (=)
       url: '#path_to_video',
     },
     {
       text: 'TRIGONOMETRY EQUATIONS',
-      type: 'link', // Use a colon (:) for assignment, not an equal sign (=)
+      type: 'txt', // Use a colon (:) for assignment, not an equal sign (=)
       url: '#path_to_page',
     },
   ];
