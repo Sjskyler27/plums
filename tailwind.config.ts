@@ -13,13 +13,19 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      extend: {
-        maxHeight: {
-          '0': '0',
-          full: '100%',
-        },
+      maxHeight: {
+        '0': '0',
+        full: '100%',
       },
-      plugins: [],
+      transitionProperty: {
+        'max-height': 'max-height',
+      },
+      transitionDuration: {
+        '300': '0.3s',
+      },
+      transitionTimingFunction: {
+        ease: 'ease',
+      },
     },
     colors: {
       byzantium: '#820263',
