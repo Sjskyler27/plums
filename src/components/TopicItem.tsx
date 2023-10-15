@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 interface Link {
@@ -14,22 +14,38 @@ interface Props {
 
 const TopicItem: React.FC<Props> = ({ title, links }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [contentHeight, setContentHeight] = useState<number | null>(null);
+
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Calculate the content height when the card is opened
+    if (isOpen && cardRef.current) {
+      const contentWrapper = cardRef.current.querySelector('#contentWrapper');
+      if (contentWrapper) {
+        setContentHeight(contentWrapper.scrollHeight);
+      }
+    } else {
+      // Reset the content height when the card is closed
+      setContentHeight(null);
+    }
+  }, [isOpen]);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
 
   const contentStyle = {
-    maxHeight: isOpen ? '800px' : '0', // Adjust the maximum height as needed
+    maxHeight: contentHeight !== null ? `${contentHeight}px` : '0', // Use calculated height or 0 if closed
     overflow: 'hidden',
-    transition: 'max-height 0.5s ease', // Adjust the duration and easing as needed
+    transition: 'max-height 0.4s ease', // Adjust the duration and easing as needed
   };
 
   return (
-    <div id="cardWrapper" className="w-full mb-4">
+    <div ref={cardRef} className="w-full mb-4">
       <div
         id="header"
-        className={`bg-byzantium text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg 
+        className={`bg-byzantium text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all 
         ${!isOpen ? 'rounded-b-lg transition-rounded duration-1000' : ''}`} // remove border slowly when closed
         onClick={toggleOpen}
       >
@@ -40,8 +56,10 @@ const TopicItem: React.FC<Props> = ({ title, links }) => {
       </div>
       <div
         id="contentWrapper"
-        className={`bg-palePurple border-l-4 border-r-4  border-skyMagenta pl-4 rounded-b-lg 
-        ${isOpen ? 'border-b-4  transition-border duration-1000' : ''}`}
+        className={`bg-palePurple border-l-4 border-r-4 border-skyMagenta pl-4 rounded-b-lg 
+        ${
+          isOpen ? 'border-b-4 transition-border duration-300 delay-1000' : ''
+        }`}
         style={contentStyle}
       >
         {links.map((link, index) => (

@@ -31,6 +31,84 @@ export default function Examples() {
       url: '#path_to_page',
     },
   ];
+  const religionLinks = [
+    {
+      text: 'The Book of Mormon',
+      type: 'link',
+      url: 'https://www.lds.org/scriptures/bofm?lang=eng',
+    },
+    {
+      text: 'Understanding the Bible',
+      type: 'link',
+      url: 'https://www.bible.com/',
+    },
+    {
+      text: 'World Religions Overview',
+      type: 'link',
+      url: 'https://www.worldreligions.psu.edu/',
+    },
+    {
+      text: 'Religion and Philosophy Courses',
+      type: 'link',
+      url: 'https://www.coursera.org/specializations/religion-philosophy',
+    },
+    {
+      text: 'The Bhagavad Gita',
+      type: 'link',
+      url: 'https://www.bhagavad-gita.org/',
+    },
+    {
+      text: 'Introduction to Buddhism',
+      type: 'link',
+      url: 'https://www.learnreligions.com/an-introduction-to-buddhism-449635',
+    },
+    {
+      text: 'Islam: A Brief Introduction',
+      type: 'link',
+      url: 'https://www.islamreligion.com/',
+    },
+    {
+      text: 'Judaism 101',
+      type: 'link',
+      url: 'https://www.jewfaq.org/',
+    },
+    {
+      text: 'Hinduism Basics',
+      type: 'link',
+      url: 'https://www.hinduwebsite.com/',
+    },
+    {
+      text: 'Comparative Religion Studies',
+      type: 'link',
+      url: 'https://www.harvard.edu/academics/graduate-degrees/hds/comparative-religion',
+    },
+    {
+      text: 'The Vatican Official Website',
+      type: 'link',
+      url: 'https://www.vatican.va/content/vatican/en.html',
+    },
+    {
+      text: 'Religion News Service',
+      type: 'link',
+      url: 'https://religionnews.com/',
+    },
+    {
+      text: 'Religion and Ethics Newsweekly',
+      type: 'link',
+      url: 'https://www.pbs.org/wnet/religionandethics/',
+    },
+    {
+      text: 'Religious Studies Journals',
+      type: 'link',
+      url: 'https://www.jstor.org/journal/jrelstud',
+    },
+    {
+      text: 'Sacred Texts Archive',
+      type: 'link',
+      url: 'http://www.sacred-texts.com/',
+    },
+  ];
+
   return (
     <>
       <Header />
@@ -54,7 +132,7 @@ export default function Examples() {
         </div>
         <div className="p-10">
           <TopicItem title="MATHEMATICS" links={mathLinks} />
-          <TopicItem title="RELIGION" links={[]} />
+          <TopicItem title="RELIGION" links={religionLinks} />
         </div>
       </main>
       <Footer />
