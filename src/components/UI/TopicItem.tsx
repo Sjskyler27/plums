@@ -18,6 +18,7 @@ export default function TopicItem({ title, links }: Props) {
   const [contentHeight, setContentHeight] = useState<number | null>(null);
 
   const cardRef = useRef<HTMLDivElement>(null);
+  const gradientColors = 'from-byzantium via-byzantium to-palePurple';
 
   useEffect(() => {
     // Calculate the content height when the card is opened
@@ -44,10 +45,10 @@ export default function TopicItem({ title, links }: Props) {
   };
 
   return (
-    <div ref={cardRef} className="w-full mb-4">
+    <div ref={cardRef} className={`w-full mb-4 ${gradientColors}`}>
       <div
         id="header"
-        className={`bg-byzantium text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all 
+        className={`bg-byzantium text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all bg-gradient-to-r from-byzantium to-plum 
         ${
           !isOpen
             ? 'rounded-b-lg transition-rounded duration-300 delay-300' // change value to affect radius delay and speed
@@ -62,7 +63,7 @@ export default function TopicItem({ title, links }: Props) {
       </div>
       <div
         id="contentWrapper"
-        className={`bg-palePurple border-l-4 border-r-4 border-skyMagenta pl-4 rounded-b-lg 
+        className={`bg-palePurple border-l-4 border-r-4 pl-4 rounded-b-lg border-skyMagenta 
         ${
           isOpen ? 'border-b-4 transition-border duration-300 delay-1000' : '' // currently does not seem to be working trying to slowly remove the bottom border
         }`}
