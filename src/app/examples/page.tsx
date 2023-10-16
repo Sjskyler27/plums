@@ -6,7 +6,7 @@ import BackgroundSpinner from '@/components/BackgroundSpinner';
 import Popup from '@/components/UI/CustomPopup';
 import Header from '@/components/layouts/Header';
 import Footer from '@/components/layouts/Footer';
-import TopicItem from '@/components/TopicItem';
+import TopicItem from '@/components/UI/TopicItem';
 import { mathLinks, religionLinks } from '@/data/topicData';
 
 export default function Examples() {
