@@ -15,7 +15,8 @@ export default function Examples() {
   return (
     <>
       <Header />
-      <main className="mx-auto grid items-center justify-center">
+      <div id="add-padding" className="h-24"></div>
+      <main className="mx-auto grid items-center justify-center ">
         <div className="hidden">
           <Popup></Popup>
         </div>
