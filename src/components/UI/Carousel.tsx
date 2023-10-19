@@ -39,7 +39,7 @@ export default function Carousel({ images }: { images: string[] }) {
       } else {
         setActiveSlide(0);
       }
-    }, 1000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [activeSlide, images.length]);
 
