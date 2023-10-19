@@ -38,10 +38,16 @@ export default function Examples() {
           <TopicItem title="RELIGION" links={religionLinks} />
         </div>
         <div>
-          <Carousel images={['/placeholder.jpeg', '/placeholder1.jpeg', '/placeholder2.jpeg']}/>
+          <Carousel
+            images={[
+              '/placeholder.jpeg',
+              '/placeholder1.jpeg',
+              '/placeholder2.jpeg',
+            ]}
+          />
         </div>
         <div>
-          <Modal />
+          <Modal image="placeholder.jpeg" />
         </div>
       </main>
       <Footer />
