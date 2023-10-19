@@ -1,8 +1,9 @@
 'use client';
-import Footer from '@/components/layouts/Footer';
+import React, { useState, useEffect } from 'react';
 import Header from '@/components/layouts/Header';
-import Carousel from '@/components/UI/Carousel';
+import Footer from '@/components/layouts/Footer';
 import Modal from '@/components/UI/Modal';
+import Carousel from '@/components/UI/Carousel';
 
 export default function Home() {
   const modalImages = [
@@ -13,7 +14,6 @@ export default function Home() {
     'math.jpg',
     'math.jpg',
   ];
-
   return (
     <>
       <Header />
@@ -31,8 +31,8 @@ export default function Home() {
           />
         </div>
         <div className="mx-auto grid items-center justify-center ">
-          <div className="mx-auto grid grid-cols-3 gap-4 pt-10 pb-10">
-            {/* Render the modals in a 3x2 grid */}
+          <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-10 pb-10">
+            {/* Render the modals */}
             {modalImages.map((image, index) => (
               <div key={index} className="col-span-1">
                 <Modal image={image} />
