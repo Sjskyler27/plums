@@ -1,4 +1,6 @@
-export const mathLinks = [
+import TopicModel from "./TopicModel";
+
+export const mathLinks: TopicModel = [
   {
     text: 'MATH FOR THE REAL WORLD',
     type: 'link', // Use a colon (:) for assignment, not an equal sign (=)
