@@ -29,9 +29,11 @@ const config: Config = {
     },
     colors: {
       byzantium: '#820263',
-      palePurple: '#F8DEFF',
-      skyMagenta: '#bd70b1',
+      mardiGras: '#911e77',
       plum: '#a0398a',
+      skyMagenta: '#bd70b1',
+      palePurple: '#F8DEFF',
+      lightPurple: '#FCEFFF',
       white: '#fff',
       black: '#000',
       blue: '#2ca5ff',
