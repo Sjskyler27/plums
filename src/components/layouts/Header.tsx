@@ -33,6 +33,7 @@ export default function Header() {
           menu
         </span>
       </div>
+
       {menuActive && (
         <nav>
           <ul className="bg-palePurple">

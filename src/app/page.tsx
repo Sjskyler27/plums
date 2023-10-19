@@ -5,20 +5,40 @@ import Carousel from '@/components/UI/Carousel';
 import Modal from '@/components/UI/Modal';
 
 export default function Home() {
+  const modalImages = [
+    'math.jpg',
+    'math.jpg',
+    'math.jpg',
+    'math.jpg',
+    'math.jpg',
+    'math.jpg',
+  ];
+
   return (
     <>
       <Header />
-      <main>
-        <Carousel
-          images={[
-            '/quote-1.png',
-            '/quote-2.png',
-            '/quote-3.png',
-            '/quote-4.jpg',
-          ]}
-        />
-        <div>
-          <Modal image="math.jpg" />
+
+      <div id="add-padding" className="h-24"></div>
+      <main className=" text-center">
+        <div className="grid items-center justify-center pt-10 min-h-400">
+          <Carousel
+            images={[
+              '/quote-1.png',
+              '/quote-2.png',
+              '/quote-3.png',
+              '/quote-4.jpg',
+            ]}
+          />
+        </div>
+        <div className="mx-auto grid items-center justify-center ">
+          <div className="mx-auto grid grid-cols-3 gap-4 pt-10 pb-10">
+            {/* Render the modals in a 3x2 grid */}
+            {modalImages.map((image, index) => (
+              <div key={index} className="col-span-1">
+                <Modal image={image} />
+              </div>
+            ))}
+          </div>
         </div>
       </main>
       <Footer />
