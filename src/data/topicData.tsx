@@ -1,26 +1,29 @@
-export const mathLinks = [
+import LinkModel from './LinkModel';
+
+export const mathLinks: LinkModel[] = [
   {
     text: 'MATH FOR THE REAL WORLD',
-    type: 'link', // Use a colon (:) for assignment, not an equal sign (=)
+    type: 'link',
     url: 'https://content.byui.edu/file/fb4c2d20-04c3-463d-93f6-725064a8b15d/18/fdmat108syllabus.html',
   },
   {
     text: 'FIRST JUMP INTO CALCULUS',
-    type: 'youtube', // Use a colon (:) for assignment, not an equal sign (=)
+    type: 'youtube',
     url: 'https://www.youtube.com/watch?v=5yfh5cf4-0w',
   },
   {
     text: 'DERIVATIVES FOR NEWBIES',
-    type: 'pdf', // Use a colon (:) for assignment, not an equal sign (=)
+    type: 'pdf',
     url: '#path_to_video',
   },
   {
     text: 'TRIGONOMETRY EQUATIONS',
-    type: 'txt', // Use a colon (:) for assignment, not an equal sign (=)
+    type: 'txt',
     url: '#path_to_page',
   },
 ];
-export const religionLinks = [
+
+export const religionLinks: LinkModel[] = [
   {
     text: 'The Book of Mormon',
     type: 'link',
@@ -97,3 +100,5 @@ export const religionLinks = [
     url: 'http://www.sacred-texts.com/',
   },
 ];
+
+// You can create similar arrays for other categories of links as needed.

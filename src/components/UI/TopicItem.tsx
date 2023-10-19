@@ -1,11 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
-interface Link {
-  text: string;
-  url: string;
-  type: string;
-}
+// import styles from '@/components/UI/TopicItem.css';
+import Link from '../../data/LinkModel';
 
 interface Props {
   title: string;
@@ -63,7 +60,7 @@ export default function TopicItem({ title, links }: Props) {
       </div>
       <div
         id="contentWrapper"
-        className={`bg-palePurple border-l-4 border-r-4 pl-4 rounded-b-lg border-skyMagenta 
+        className={` border-l-4 border-r-4 pl-4 rounded-b-lg border-byzantium border-r-plum bg-gradient-to-r from-lightPurple to-lightPurple 
         ${
           isOpen ? 'border-b-4 transition-border duration-300 delay-1000' : '' // currently does not seem to be working trying to slowly remove the bottom border
         }`}
@@ -76,7 +73,7 @@ export default function TopicItem({ title, links }: Props) {
           ) => (
             <div id="linksIcoWrapper" key={index}>
               <a
-                className={`flex items-center p-2 text-blue hover:text-darkBlue transition-colors duration-300`}
+                className={`flex items-center p-2 text-byzantium underline font-extrabold hover:text-darkBlue transition-colors duration-300`}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -84,8 +81,9 @@ export default function TopicItem({ title, links }: Props) {
                 <Image
                   src={`/icons/${link.type}.png`}
                   alt={`${link.type}`}
-                  width={24}
-                  height={24}
+                  width={20}
+                  height={20}
+                  className="m-1"
                 />
                 {link.text}
               </a>
