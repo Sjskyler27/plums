@@ -9,6 +9,7 @@ import Footer from '@/components/layouts/Footer';
 import TopicItem from '@/components/UI/TopicItem';
 import { mathLinks, religionLinks } from '@/data/topicData';
 import Carousel from '@/components/UI/Carousel';
+import Modal from '@/components/UI/Modal';
 
 export default function Examples() {
   return (
@@ -38,6 +39,9 @@ export default function Examples() {
         </div>
         <div>
           <Carousel images={['/placeholder.jpeg', '/placeholder1.jpeg', '/placeholder2.jpeg']}/>
+        </div>
+        <div>
+          <Modal />
         </div>
       </main>
       <Footer />
