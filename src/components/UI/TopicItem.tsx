@@ -45,7 +45,7 @@ export default function TopicItem({ title, links }: Props) {
     <div ref={cardRef} className={`w-full mb-4 ${gradientColors}`}>
       <div
         id="header"
-        className={`bg-byzantium text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all bg-gradient-to-r from-byzantium to-plum 
+        className={`bg-byzantium text-center text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all bg-gradient-to-r from-byzantium to-plum 
         ${
           !isOpen
             ? 'rounded-b-lg transition-rounded duration-300 delay-300' // change value to affect radius delay and speed
@@ -73,7 +73,7 @@ export default function TopicItem({ title, links }: Props) {
           ) => (
             <div id="linksIcoWrapper" key={index}>
               <a
-                className={`flex items-center p-2 text-byzantium underline font-extrabold hover:text-darkBlue transition-colors duration-300`}
+                className={`flex  p-2 text-byzantium underline font-extrabold hover:text-darkBlue transition-colors duration-300`}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"

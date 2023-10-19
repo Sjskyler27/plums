@@ -24,10 +24,18 @@ export default function Modal(props: { image: string }) {
         openCloseFunc={openCloseFunc}
       />
       <Dialog open={open} onClose={openCloseFunc}>
-        <DialogTitle>MATHEMATICS</DialogTitle>
+        <DialogTitle className="text-byzantium text-lg font-bold">
+          MATHEMATICS
+        </DialogTitle>
         <DialogContent>
           {/* loop */}
-          <TopicItem title="Calc" links={mathLinks} />
+          <TopicItem title="Calculus" links={mathLinks} />
+          <TopicItem title="triginometry" links={mathLinks} />
+          <TopicItem title="geometry" links={mathLinks} />
+
+          <TopicItem title="Calculus" links={mathLinks} />
+          <TopicItem title="triginometry" links={mathLinks} />
+          <TopicItem title="geometry" links={mathLinks} />
         </DialogContent>
         <DialogActions>
           <button type="button" onClick={openCloseFunc}>
