@@ -20,7 +20,7 @@ export default function TopicCard({
         onClick={openCloseFunc}
       >
         <p className="pb-4">{title}</p>
-        <img src={img} alt={title} />
+        <img src={img} alt={title} className="w-full h-44 overflow-hidden" />
       </button>
     </div>
   );

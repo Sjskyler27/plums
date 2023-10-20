@@ -4,16 +4,8 @@ import Header from '@/components/layouts/Header';
 import Footer from '@/components/layouts/Footer';
 import Modal from '@/components/UI/Modal';
 import Carousel from '@/components/UI/Carousel';
-
+import { Card } from '@/data/parentData';
 export default function Home() {
-  const modalImages = [
-    'math.jpg',
-    'math.jpg',
-    'math.jpg',
-    'math.jpg',
-    'math.jpg',
-    'math.jpg',
-  ];
   return (
     <>
       <Header />
@@ -33,9 +25,9 @@ export default function Home() {
         <div className="mx-auto grid items-center justify-center ">
           <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-10 pb-10">
             {/* Render the modals */}
-            {modalImages.map((image, index) => (
+            {Card.map((item, index) => (
               <div key={index} className="col-span-1">
-                <Modal image={image} />
+                <Modal image={item.image} title={item.title} />
               </div>
             ))}
           </div>
