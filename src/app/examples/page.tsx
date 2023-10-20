@@ -48,7 +48,7 @@ export default function Examples() {
           />
         </div>
         <div>
-          <Modal image="placeholder.jpeg" />
+          <Modal image="placeholder.jpeg" title="other" />
         </div>
       </main>
       <Footer />
