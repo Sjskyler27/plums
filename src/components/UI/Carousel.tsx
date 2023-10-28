@@ -30,32 +30,22 @@ export default function Carousel({ images }: { images: string[] }) {
       });
   }, [images]);
 
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (activeSlide < images.length - 1) {
-        setActiveSlide(activeSlide + 1);
-      } else {
-        setActiveSlide(0);
-      }
-    }, 3000);
+      console.log('interval');
+      const isLastImage = currentIndex === images.length - 1;
+      const newIndex = isLastImage ? 0 : currentIndex + 1;
+      setCurrentIndex(newIndex);
+    }, 2000);
+
     return () => clearInterval(interval);
-  }, [activeSlide, images.length]);
+  }, [currentIndex, images.length]);
 
   return (
-    <div id="carousel-container">
-      {images.map((image, index) => (
-        <div
-          key={index}
-          id={`${index}-img`}
-          className={
-            activeSlide === index ? 'w-32rem h-80 overflow-hidden' : 'hidden'
-          }
-        >
-          <img src={image} width={600} height={400} alt="test" />
-        </div>
-      ))}
+    <div id="carousel-container" className='w-[1400px] h-[780px] m-auto py-16 px-4 relative group'>
+      <div style={{backgroundImage: `url(${images[currentIndex]})`}} className='w-full h-full rounded-2xl bg-center bg-cover duration-500'></div>
     </div>
   );
 }
