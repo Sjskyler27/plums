@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image'; // Import the Image component from Next.js
 
 export default function Header() {
@@ -8,13 +8,30 @@ export default function Header() {
     setMenuActive(!menuActive);
   };
 
+  function closeMenuOnClick(e: MouseEvent) {
+    const elem = e.target as HTMLElement;
+    if (!elem.classList.contains('menu')) {
+      setMenuActive(false);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', closeMenuOnClick);
+
+    return () => document.removeEventListener('click', closeMenuOnClick);
+  }, []);
+
   return (
     <header className="bg-white fixed top-0 w-full border-b-byzantium border-b-2">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
-      <div className="flex justify-between p-1">
+      <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" 
+      />
+      <div className="flex justify-between items-center p-1">
         <div className="flex">
           <Image
             src="/icons/plum.png"
@@ -23,34 +40,37 @@ export default function Header() {
             height={75}
             className="m-1"
           />
-          <p className="pt-6  text-3xl font-bold text-byzantium ">PLUMS</p>
+          <p className="pt-6 text-3xl font-bold text-byzantium">PLUMS</p>
         </div>
         <span
-          className="pt-4 material-symbols-outlined text-byzantium"
+          className="material-symbols-outlined text-byzantium menu"
           style={{
             fontSize: '48px',
           }}
           onClick={activateMenu}
         >
-          menu
+          {menuActive ? "close" : "menu"}
         </span>
       </div>
-
+      <div className='w-full flex justify-end h-0'>
       {menuActive && (
-        <nav>
-          <ul className="bg-palePurple">
-            <li className="text-center">
-              <a href="/">Home</a>
+        <nav className='overflow-visible mt-[-20px] mr-2 w-auto menu'>
+          <ul className="bg-palePurple p-3 rounded-lg menu shadow-lg">
+            <li className="text-center p-1 menu">
+              <a href="/" className='menu'>Home</a>
             </li>
-            <li className="text-center">
-              <a href="/examples">Examples</a>
+            <hr className='menu'/>
+            <li className="text-center p-1 menu">
+              <a href="/examples" className='menu'>Examples</a>
             </li>
-            <li className="text-center">
-              <a href="#">Profile</a>
+            <hr className='menu'/>
+            <li className="text-center p-1 menu">
+              <a href="#" className='menu'>Profile</a>
             </li>
           </ul>
         </nav>
       )}
+    </div>
     </header>
   );
 }
