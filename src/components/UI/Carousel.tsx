@@ -34,9 +34,8 @@ export default function Carousel({ images }: { images: string[] }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log('interval');
-      const isLastImage = currentIndex === images.length - 1;
-      const newIndex = isLastImage ? 0 : currentIndex + 1;
+      let isLastImage = currentIndex === images.length - 1;
+      let newIndex = isLastImage ? 0 : currentIndex + 1;
       setCurrentIndex(newIndex);
     }, 2000);
 
