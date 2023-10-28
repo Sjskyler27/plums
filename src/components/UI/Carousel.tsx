@@ -37,13 +37,13 @@ export default function Carousel({ images }: { images: string[] }) {
       let isLastImage = currentIndex === images.length - 1;
       let newIndex = isLastImage ? 0 : currentIndex + 1;
       setCurrentIndex(newIndex);
-    }, 2000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [currentIndex, images.length]);
 
   return (
-    <div id="carousel-container" className='w-[1400px] h-[780px] m-auto py-16 px-4 relative group'>
+    <div id="carousel-container" className='max-w-2xl w-[672px] h-[500px] m-auto py-16 px-4 group'>
       <div style={{backgroundImage: `url(${images[currentIndex]})`}} className='w-full h-full rounded-2xl bg-center bg-cover duration-500'></div>
     </div>
   );
