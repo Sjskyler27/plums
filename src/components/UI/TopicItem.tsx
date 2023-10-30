@@ -7,9 +7,10 @@ import Link from '../../data/LinkModel';
 interface Props {
   title: string;
   links: Link[];
+  color: string;
 }
 
-export default function TopicItem({ title, links }: Props) {
+export default function TopicItem({ title, links, color }: Props) {
   // keep in mind use state requires use client on the page or component that uses it!
   const [isOpen, setIsOpen] = useState(false);
   const [contentHeight, setContentHeight] = useState<number | null>(null);
@@ -40,18 +41,19 @@ export default function TopicItem({ title, links }: Props) {
     overflow: 'hidden',
     transition: 'max-height 0.4s ease', // change value to affect the content drop speed
   };
-
+  // color = 'blue';
   return (
     <div ref={cardRef} className={`w-full mb-4 ${gradientColors}`}>
       <div
         id="header"
-        className={`bg-byzantium text-center text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all bg-gradient-to-r from-byzantium to-plum 
+        className={` text-center text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all
         ${
           !isOpen
             ? 'rounded-b-lg transition-rounded duration-300 delay-300' // change value to affect radius delay and speed
             : ''
         }`} // remove border slowly when closed
         onClick={toggleOpen}
+        style={{ backgroundColor: color }}
       >
         {title}
         <span id="arrowIcon" className="float-right">
