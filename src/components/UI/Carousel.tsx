@@ -43,7 +43,7 @@ export default function Carousel({ images }: { images: string[] }) {
   }, [currentIndex, images.length]);
 
   return (
-    <div id="carousel-container" className='max-w-2xl w-[672px] h-[500px] m-auto py-16 px-4 group'>
+    <div id="carousel-container" className='max-w-2xl lg:w-[672px] md:w-[480px] sm:w-[480px] w-72 lg:h-[500px] h-[340px] m-auto py-16 px-4'>
       <div style={{backgroundImage: `url(${images[currentIndex]})`}} className='w-full h-full rounded-2xl bg-center bg-cover duration-500'></div>
     </div>
   );
