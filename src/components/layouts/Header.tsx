@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image'; // Import the Image component from Next.js
+import { MdMenu, MdClose } from 'react-icons/md';
 
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
@@ -8,29 +9,21 @@ export default function Header() {
     setMenuActive(!menuActive);
   };
 
-  function closeMenuOnClick(e: MouseEvent) {
-    const elem = e.target as HTMLElement;
-    if (!elem.classList.contains('menu')) {
-      setMenuActive(false);
-    }
-  }
-
   useEffect(() => {
+    const closeMenuOnClick = (e: MouseEvent) => {
+      if (menuActive) {
+        let nav = document.getElementById('nav')!;
+        let eventElem = (e.target as HTMLElement)!;
+        if (!nav.contains(eventElem)) setMenuActive(!menuActive);
+      }
+    }
+    
     document.addEventListener('click', closeMenuOnClick);
-
     return () => document.removeEventListener('click', closeMenuOnClick);
-  }, []);
+  }, [menuActive]);
 
   return (
     <header className="bg-white fixed top-0 w-full border-b-byzantium border-b-2">
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-      />
-      <link 
-        rel="stylesheet" 
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" 
-      />
       <div className="flex justify-between items-center p-1">
         <div className="flex">
           <Image
@@ -42,30 +35,28 @@ export default function Header() {
           />
           <p className="pt-6 text-3xl font-bold text-byzantium">PLUMS</p>
         </div>
-        <span
-          className="material-symbols-outlined text-byzantium menu"
+        <button
+          className="text-byzantium"
           style={{
             fontSize: '48px',
           }}
           onClick={activateMenu}
         >
-          {menuActive ? "close" : "menu"}
-        </span>
+          {menuActive ? <MdClose /> : <MdMenu/>}
+        </button>
       </div>
       <div className='w-full flex justify-end h-0'>
       {menuActive && (
-        <nav className='overflow-visible mt-[-20px] mr-2 w-auto menu'>
-          <ul className="bg-palePurple p-3 rounded-lg menu shadow-lg">
-            <li className="text-center p-1 menu">
-              <a href="/" className='menu'>Home</a>
+        <nav className="overflow-visible mt-[-20px] mr-2 w-auto" id="nav">
+          <ul className="bg-palePurple p-3 rounded-lg shadow-lg">
+            <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
+              <a href="/">Home</a>
             </li>
-            <hr className='menu'/>
-            <li className="text-center p-1 menu">
-              <a href="/examples" className='menu'>Examples</a>
+            <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
+              <a href="/examples">Examples</a>
             </li>
-            <hr className='menu'/>
-            <li className="text-center p-1 menu">
-              <a href="#" className='menu'>Profile</a>
+            <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
+              <a href="#">Profile</a>
             </li>
           </ul>
         </nav>
