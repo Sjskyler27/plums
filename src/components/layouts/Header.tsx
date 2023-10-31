@@ -13,8 +13,8 @@ export default function Header() {
     const closeMenuOnClick = (e: MouseEvent) => {
       if (menuActive) {
         let nav = document.getElementById('nav')!;
-        let elem = (e.target as HTMLElement)!;
-        if (!nav.contains(elem)) setMenuActive(!menuActive);
+        let eventElem = (e.target as HTMLElement)!;
+        if (!nav.contains(eventElem)) setMenuActive(!menuActive);
       }
     }
     
@@ -42,22 +42,20 @@ export default function Header() {
           }}
           onClick={activateMenu}
         >
-          {menuActive ? <MdClose/> : <MdMenu/>}
+          {menuActive ? <MdClose /> : <MdMenu/>}
         </button>
       </div>
       <div className='w-full flex justify-end h-0'>
       {menuActive && (
-        <nav className='overflow-visible mt-[-20px] mr-2 w-auto' id='nav'>
-          <ul className="bg-palePurple p-3 rounded-lg  shadow-lg">
-            <li className="text-center p-1 ">
+        <nav className="overflow-visible mt-[-20px] mr-2 w-auto" id="nav">
+          <ul className="bg-palePurple p-3 rounded-lg shadow-lg">
+            <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
               <a href="/">Home</a>
             </li>
-            <hr/>
-            <li className="text-center p-1 ">
+            <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
               <a href="/examples">Examples</a>
             </li>
-            <hr/>
-            <li className="text-center p-1 ">
+            <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
               <a href="#">Profile</a>
             </li>
           </ul>
