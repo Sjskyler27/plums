@@ -1,5 +1,6 @@
 // import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import BackgroundSpinner from '../BackgroundSpinner';
 
 export default function Carousel({ images }: { images: string[] }) {
   // State to track whether all images are loaded
@@ -44,7 +45,9 @@ export default function Carousel({ images }: { images: string[] }) {
 
   return (
     <div id="carousel-container" className='max-w-2xl lg:w-[672px] md:w-[480px] sm:w-[480px] w-72 lg:h-[500px] h-[340px] m-auto py-16 px-4'>
-      <div style={{backgroundImage: `url(${images[currentIndex]})`}} className='w-full h-full rounded-2xl bg-center bg-cover duration-500'></div>
-    </div>
+      {imagesLoaded ?
+       <div style={{backgroundImage: `url(${images[currentIndex]})`}} className='w-full h-full rounded-2xl bg-center bg-cover duration-500'></div>
+       : <BackgroundSpinner /> }
+       </div>
   );
 }
