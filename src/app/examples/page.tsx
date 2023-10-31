@@ -35,8 +35,8 @@ export default function Examples() {
           <BackgroundSpinner></BackgroundSpinner>
         </div>
         <div className="p-10">
-          <TopicItem title="MATHEMATICS" links={mathLinks} />
-          <TopicItem title="RELIGION" links={religionLinks} />
+          <TopicItem title="MATHEMATICS" links={mathLinks} color="red" />
+          <TopicItem title="RELIGION" links={religionLinks} color="blue" />
         </div>
         <div>
           <Carousel
@@ -48,7 +48,7 @@ export default function Examples() {
           />
         </div>
         <div>
-          <Modal image="placeholder.jpeg" title="other" />
+          <Modal image="placeholder.jpeg" title="other" color="pink" />
         </div>
       </main>
       <Footer />

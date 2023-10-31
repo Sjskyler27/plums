@@ -27,7 +27,11 @@ export default function Home() {
             {/* Render the modals */}
             {Card.map((item, index) => (
               <div key={index} className="col-span-1">
-                <Modal image={item.image} title={item.title} />
+                <Modal
+                  image={item.image}
+                  title={item.title}
+                  color={item.color}
+                />
               </div>
             ))}
           </div>
