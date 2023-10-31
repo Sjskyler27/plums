@@ -52,7 +52,7 @@ export default function TopicCard({
       <div className="w-64">
         <div
           id="header"
-          className="bg-byzantium text-white text-lg font-bold w-full border-byzantium cursor-pointer rounded-lg bg-gradient-to-r from-byzantium to-plum hover:from-palePurple hover:to-skyMagenta hover:text-byzantium transition ease-in-out duration-1000"
+          className="text-white text-lg font-bold w-full cursor-pointer rounded-lg"
           onClick={openCloseFunc}
           style={{ backgroundColor: color }}
           >
