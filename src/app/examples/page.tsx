@@ -9,7 +9,7 @@ import Footer from '@/components/layouts/Footer';
 import TopicItem from '@/components/UI/TopicItem';
 import { mathLinks, religionLinks } from '@/data/topicData';
 import Carousel from '@/components/UI/Carousel';
-import Modal from '@/components/UI/Modal';
+import TopicModal from '@/components/UI/TopicModal';
 
 export default function Examples() {
   return (
@@ -48,7 +48,7 @@ export default function Examples() {
           />
         </div>
         <div>
-          <Modal image="placeholder.jpeg" title="other" color="pink" />
+          <TopicModal image="placeholder.jpeg" title="other" color="pink" />
         </div>
       </main>
       <Footer />
