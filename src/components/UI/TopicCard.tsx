@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { MdMoreVert } from 'react-icons/md';
+import { MdMoreVert, MdClose, MdSave } from 'react-icons/md';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 interface TopicCardProps {
@@ -92,8 +92,16 @@ export default function TopicCard({
         </div>
       </DialogContent>
       <DialogActions>
+        <div className='w-full text-center'>
+          <button type="button" onClick={openCloseEdit}>
+              <MdClose style={{fontSize: "32px"}}/>
+          </button>
+          <button type="button">
+              <MdSave style={{fontSize: "32px"}}/>
+          </button>
+        </div>
       </DialogActions>
     </Dialog>
-</>
+  </>
   );
 }
