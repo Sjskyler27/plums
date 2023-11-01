@@ -93,10 +93,10 @@ export default function TopicCard({
       </DialogContent>
       <DialogActions>
         <div className='w-full text-center'>
-          <button type="button" onClick={openCloseEdit}>
+          <button type="button" onClick={openCloseEdit} className='bg-blue pr-4 pl-4 pt-1 pb-1 mr-1 rounded-md text-white hover:bg-darkBlue hover:text-skyMagenta'>
               <MdClose style={{fontSize: "32px"}}/>
           </button>
-          <button type="button">
+          <button type="button" className='bg-byzantium pr-4 pl-4 pt-1 pb-1 ml-1 rounded-md text-white hover:bg-skyMagenta hover:text-palePurple'>
               <MdSave style={{fontSize: "32px"}}/>
           </button>
         </div>
