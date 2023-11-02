@@ -10,6 +10,7 @@ import TopicItem from '@/components/UI/TopicItem';
 import { mathLinks, religionLinks } from '@/data/topicData';
 import Carousel from '@/components/UI/Carousel';
 import TopicModal from '@/components/UI/TopicModal';
+import { GoPencil } from 'react-icons/go';
 
 export default function Examples() {
   return (
@@ -25,6 +26,7 @@ export default function Examples() {
         <div className="mx-auto">
           <Spinner></Spinner>
         </div>
+        <GoPencil style={{ fontSize: '16px' }}></GoPencil>
         <Card header="Note Card">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
           risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec,
