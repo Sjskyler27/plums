@@ -48,7 +48,7 @@ export default function Examples() {
           />
         </div>
         <div>
-          <TopicModal image="placeholder.jpeg" title="other" color="pink" />
+          {/* <TopicModal image="placeholder.jpeg" title="other" color="pink" /> */}
         </div>
       </main>
       <Footer />
