@@ -43,7 +43,7 @@ export default function TopicCard({
     <div className='grid grid-flow-row'>
       <div className='w-full flex justify-end h-0 z-10'>
       { editMenuActive ? 
-      <div className='overflow-visible mr-[-81px] w-auto' id="edit-menu">
+      <div className='overflow-visible mt-[44px] mr-1 md:mt-0 md:mr-[-81px] w-auto' id="edit-menu">
         <ul className="bg-palePurple p-3 rounded-lg shadow-lg">
           <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
             <p onClick={openCloseEdit}>Edit</p>
@@ -75,32 +75,34 @@ export default function TopicCard({
         </div>
       </div>
     </div>
-    <Dialog open={open} onClose={openCloseEdit} >
-      <DialogTitle>Edit {title}</DialogTitle>
-      <DialogContent>
-        <div className='flex justify-between mb-2 mt-2'>
-          <label htmlFor="title" className='pr-2'>Title</label>
-          <input type="text" name="title" id="title" defaultValue={title} className='rounded-md border-byzantium border-2 pl-1'/>
-        </div>
-        <div className='flex justify-between mb-2 mt-2'>
-          <label htmlFor="color" className='pr-2'>Color</label>
-          <input type="text" name='color' id='color' defaultValue={color} className='rounded-md border-byzantium border-2 pl-1'/>
-        </div>
-        <div className='flex justify-between mb-2 mt-2'>
-          <label htmlFor="image" className='pr-2'>Image Url</label>
-          <input type="text" name="image" id="image" defaultValue={img} className='rounded-md border-byzantium border-2 pl-1'/>
-        </div>
-      </DialogContent>
-      <DialogActions>
-        <div className='w-full text-center'>
-          <button type="button" onClick={openCloseEdit} className='bg-blue pr-4 pl-4 pt-1 pb-1 mr-1 rounded-md text-white hover:bg-darkBlue hover:text-skyMagenta'>
-              <MdClose style={{fontSize: "32px"}}/>
-          </button>
-          <button type="button" className='bg-byzantium pr-4 pl-4 pt-1 pb-1 ml-1 rounded-md text-white hover:bg-skyMagenta hover:text-palePurple'>
-              <MdSave style={{fontSize: "32px"}}/>
-          </button>
-        </div>
-      </DialogActions>
+    <Dialog open={open} onClose={openCloseEdit}>
+      <div className='p-4'>
+        <DialogTitle>Edit {title}</DialogTitle>
+        <DialogContent>
+            <div className='text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3'>
+              <label htmlFor="title" className='mt-auto mb-auto'>Title</label>
+              <input type="text" name="title" id="title" defaultValue={title} className='rounded-md border-byzantium border-2 p-2 w-full sm:w-56 sm:max-w-[256px]'/>
+            </div>
+            <div className='text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3'>
+              <label htmlFor="color" className='mt-auto mb-auto'>Color</label>
+              <input type="text" name='color' id='color' defaultValue={color} className='rounded-md border-byzantium border-2 p-2 w-full sm:w-56 sm:max-w-[256px]'/>
+            </div>
+            <div className='text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3'>
+              <label htmlFor="image" className='mt-auto mb-auto'>Image</label>
+              <input type="text" name="image" id="image" defaultValue={img} className='rounded-md border-byzantium border-2 p-2 w-full sm:w-56 sm:max-w-[256px]'/>
+            </div>
+        </DialogContent>
+        <DialogActions>
+          <div className='w-full text-center'>
+            <button type="button" onClick={openCloseEdit} className='bg-blue pr-4 pl-4 pt-1 pb-1 mr-1 rounded-md text-white hover:bg-darkBlue hover:text-skyMagenta'>
+                <MdClose style={{fontSize: "32px"}}/>
+            </button>
+            <button type="button" className='bg-byzantium pr-4 pl-4 pt-1 pb-1 ml-1 rounded-md text-white hover:bg-skyMagenta hover:text-palePurple'>
+                <MdSave style={{fontSize: "32px"}}/>
+            </button>
+          </div>
+        </DialogActions>
+      </div>
     </Dialog>
   </>
   );
