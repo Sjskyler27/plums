@@ -44,10 +44,18 @@ export default function Carousel({ images }: { images: string[] }) {
   }, [currentIndex, images.length]);
 
   return (
-    <div id="carousel-container" className='max-w-2xl lg:w-[672px] md:w-[480px] sm:w-[480px] w-72 lg:h-[500px] h-[340px] m-auto py-16 px-4'>
-      {imagesLoaded ?
-       <div style={{backgroundImage: `url(${images[currentIndex]})`}} className='w-full h-full rounded-2xl bg-center bg-cover duration-500'></div>
-       : <SmallSpinner /> }
-       </div>
+    <div
+      id="carousel-container"
+      className=" lg:w-[820px] lg:h-[250px]  sm:w-[560px] sm:h-48  w-72 h-36 m-auto px-4"
+    >
+      {imagesLoaded ? (
+        <div
+          style={{ backgroundImage: `url(${images[currentIndex]})` }}
+          className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
+        ></div>
+      ) : (
+        <SmallSpinner />
+      )}
+    </div>
   );
 }
