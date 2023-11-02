@@ -6,15 +6,17 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import TopicItem from './TopicItem';
-import { mathLinks } from '@/data/topicData';
 import TopicCard from './TopicCard';
+import TopicModel from '@/data/TopicModel';
+
 interface Props {
   title: string;
   image: string;
   color: string;
+  childTopics: TopicModel[]
 }
 
-export default function Modal({ title, image, color }: Props) {
+export default function TopicModal({ title, image, color, childTopics }: Props) {
   const [open, setOpen] = useState(false);
 
   function openCloseFunc() {
@@ -31,17 +33,13 @@ export default function Modal({ title, image, color }: Props) {
       />
       <Dialog open={open} onClose={openCloseFunc}>
         <DialogTitle className="text-lg font-bold" style={{ color: color }}>
-          MATHEMATICS
+          {title}
         </DialogTitle>
         <DialogContent>
-          {/* loop */}
-          <TopicItem title="Calculus" links={mathLinks} color="red" />
-          <TopicItem title="triginometry" links={mathLinks} color="blue" />
-          <TopicItem title="geometry" links={mathLinks} color="#897645" />
-
-          <TopicItem title="Calculus" links={mathLinks} color="#342655" />
-          <TopicItem title="triginometry" links={mathLinks} color="#567489" />
-          <TopicItem title="geometry" links={mathLinks} color="#896754" />
+          {
+            childTopics.map((childTopic, index) => 
+            <TopicItem key={index} title={childTopic.title} links={childTopic.linkList} color={childTopic.color} />)
+          }
         </DialogContent>
         <DialogActions>
           <button type="button" onClick={openCloseFunc}>
