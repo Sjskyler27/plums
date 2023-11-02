@@ -14,7 +14,7 @@ export default function Home() {
 
       <div id="add-padding" className="h-24"></div>
       <main className=" text-center">
-        <div className="grid items-center justify-center pt-10 min-h-400">
+        <div className="grid items-center justify-center pt-1 min-h-400">
           <Carousel
             images={[
               '/quote-1.png',
