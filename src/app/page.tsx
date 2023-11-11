@@ -8,6 +8,19 @@ import { Card } from '@/data/parentData';
 import defaultChildTopics from '@/data/DefaultChildTopics';
 
 export default function Home() {
+
+  async function postData() {
+    const response = await fetch("http://localhost:3000/api/test", {
+      method: "post"
+    });
+
+    if (response.ok) {
+      console.log("success")
+    } else {
+      console.error("failed")
+    }
+  }
+
   return (
     <>
       <Header />
@@ -37,6 +50,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <button type="button" onClick={postData} className='bg-palePurple'>Submit POST</button>
         </div>
       </main>
       <Footer />
