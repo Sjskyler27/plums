@@ -28,6 +28,7 @@ export interface ISubTopic extends mongoose.Document {
     description: string | undefined | null;
     color: string;
     links: ILinkModel[];
+    parentTopicID: string;
 }
 
 const subTopicSchema = new Schema({
@@ -40,7 +41,11 @@ const subTopicSchema = new Schema({
         type: String,
         required: true
     },
-    links: [LinkModelSchema]
+    links: [LinkModelSchema],
+    parentTopicID: {
+        type: String,
+        required: true,
+    }
 });
 
 const SubTopic = mongoose.model<ISubTopic>("SubTopic", subTopicSchema);
