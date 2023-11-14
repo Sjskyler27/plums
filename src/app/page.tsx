@@ -10,8 +10,25 @@ import defaultChildTopics from '@/data/DefaultChildTopics';
 export default function Home() {
 
   async function postData() {
+    const data = {
+      title: 'MATH',
+      image: 'math.jpg',
+      color: '#123456',
+  };
     const response = await fetch("http://localhost:3000/api/test", {
-      method: "post"
+      method: "post",
+    });
+
+    if (response.ok) {
+      console.log("success")
+    } else {
+      console.error("failed")
+    }
+  }
+
+  async function getData() {
+    const response = await fetch("http://localhost:3000/api/topic", {
+      method: "get"
     });
 
     if (response.ok) {
@@ -51,6 +68,7 @@ export default function Home() {
             ))}
           </div>
           <button type="button" onClick={postData} className='bg-palePurple'>Submit POST</button>
+          <button type="button" onClick={getData} className='bg-palePurple'>Submit GET</button>
         </div>
       </main>
       <Footer />
