@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 export async function POST() {
     await connect();
     const data = {
-        title: 'MATH',
+        title: 'English',
         image: 'math.jpg',
         color: '#123456',
     };

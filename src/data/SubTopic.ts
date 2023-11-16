@@ -48,5 +48,5 @@ const subTopicSchema = new Schema({
     }
 });
 
-const SubTopic = mongoose.model<ISubTopic>("SubTopic", subTopicSchema);
+const SubTopic = mongoose.models.SubTopic || mongoose.model<ISubTopic>("SubTopic", subTopicSchema);
 export default SubTopic;

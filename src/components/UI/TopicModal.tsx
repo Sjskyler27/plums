@@ -4,32 +4,49 @@ import {
   DialogActions,
   DialogContent,
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TopicItem from './TopicItem';
 import TopicCard from './TopicCard';
 import TopicModel from '@/data/TopicModel';
+import { ISubTopic } from '@/data/SubTopic';
+import { apiBaseUrl } from '@/data/constants';
 
 interface Props {
   title: string;
   image: string;
   color: string;
-  childTopics: TopicModel[]
+  id: string;
 }
 
-export default function TopicModal({ title, image, color, childTopics }: Props) {
+export default function TopicModal({ title, image, color, id }: Props) {
+  const emptySubTopics: ISubTopic[] = [];
+  const [subTopics, setSubTopics] = useState(emptySubTopics);
   const [open, setOpen] = useState(false);
 
   function openCloseFunc() {
     setOpen(!open);
   }
 
+  useEffect(() => {
+    async function getSubTopics() {
+      let response = await fetch(apiBaseUrl + `/sub-topic/${id}`);
+      if (response.ok) {
+        setSubTopics(await response.json());
+      } else {
+        console.log("Unable to get data");
+      }
+    }
+    if (open) getSubTopics()
+  }, [id, open]);
+
   return (
     <>
       <TopicCard
         title={title}
         img={image}
-        openCloseFunc={openCloseFunc}
         color={color}
+        id={id}
+        openCloseFunc={openCloseFunc}
       />
       <Dialog open={open} onClose={openCloseFunc}>
         <DialogTitle className="text-lg font-bold" style={{ color: color }}>
@@ -37,8 +54,8 @@ export default function TopicModal({ title, image, color, childTopics }: Props) 
         </DialogTitle>
         <DialogContent>
           {
-            childTopics.map((childTopic, index) => 
-            <TopicItem key={index} title={childTopic.title} links={childTopic.linkList} color={childTopic.color} />)
+            subTopics.map((childTopic, index) => 
+            <TopicItem key={index} title={childTopic.title} links={childTopic.links} color={childTopic.color} />)
           }
         </DialogContent>
         <DialogActions>
