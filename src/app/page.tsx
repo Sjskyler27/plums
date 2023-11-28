@@ -4,10 +4,9 @@ import Header from '@/components/layouts/Header';
 import Footer from '@/components/layouts/Footer';
 import TopicModal from '@/components/UI/TopicModal';
 import Carousel from '@/components/UI/Carousel';
-import { Card } from '@/data/parentData';
-import defaultChildTopics from '@/data/DefaultChildTopics';
 import { apiBaseUrl } from '@/data/constants';
 import { ITopic } from '@/data/Topic';
+import CreateTopic from '@/components/UI/CreateTopic';
 
 export default function Home() {
   const emptyTopics: ITopic[] = []
@@ -54,6 +53,7 @@ export default function Home() {
                 />
               </div>
             ))}
+            <CreateTopic />
           </div>
         </div>
       </main>
