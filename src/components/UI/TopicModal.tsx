@@ -33,10 +33,10 @@ export default function TopicModal({ title, image, color, id }: Props) {
       if (response.ok) {
         setSubTopics(await response.json());
       } else {
-        console.log("Unable to get data");
+        console.log('Unable to get data');
       }
     }
-    if (open) getSubTopics()
+    if (open) getSubTopics();
   }, [id, open]);
 
   return (
@@ -53,10 +53,15 @@ export default function TopicModal({ title, image, color, id }: Props) {
           {title}
         </DialogTitle>
         <DialogContent>
-          {
-            subTopics.map((childTopic, index) => 
-            <TopicItem key={index} title={childTopic.title} links={childTopic.links} color={childTopic.color} />)
-          }
+          {subTopics.map((childTopic, index) => (
+            // need to get links for child here using api
+            <TopicItem
+              key={index}
+              title={childTopic.title}
+              links={[]}
+              color={childTopic.color}
+            />
+          ))}
         </DialogContent>
         <DialogActions>
           <button type="button" onClick={openCloseFunc}>
