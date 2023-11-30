@@ -36,10 +36,7 @@ export default function Examples() {
         <div className="hidden">
           <BackgroundSpinner></BackgroundSpinner>
         </div>
-        <div className="p-10">
-          <TopicItem title="MATHEMATICS" links={mathLinks} color="red" />
-          <TopicItem title="RELIGION" links={religionLinks} color="blue" />
-        </div>
+        <div className="p-10"></div>
         <div>
           <Carousel
             images={[

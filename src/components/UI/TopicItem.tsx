@@ -64,9 +64,14 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
       const fetchedLinks: Link[] = await response.json();
       console.log('fetched links: ', fetchedLinks);
       setLinks(fetchedLinks); // Update the state with the fetched links
-      setTimeout(() => {
-        resize(); // Call the resize function after half a second (500 milliseconds)
-      }, 100); // delay to make sure it resizes
+      if (isOpen) {
+        setTimeout(() => {
+          if (isOpen) {
+            console.log(isOpen);
+            resize(); // Call the resize function after half a second (500 milliseconds)
+          }
+        }, 100); // delay to make sure it resizes
+      }
     } catch (error) {
       console.error('Error:', error);
       // Handle any errors here
