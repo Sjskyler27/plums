@@ -53,15 +53,17 @@ export default function TopicModal({ title, image, color, id }: Props) {
           {title}
         </DialogTitle>
         <DialogContent>
-          {subTopics.map((childTopic, index) => (
-            // need to get links for child here using api
-            <TopicItem
-              key={index}
-              title={childTopic.title}
-              links={[]}
-              color={childTopic.color}
-            />
-          ))}
+          {subTopics.map((childTopic, index) => {
+            // console.log(childTopic);
+            return (
+              <TopicItem
+                key={index}
+                title={childTopic.title}
+                color={childTopic.color}
+                subtopicID={childTopic._id}
+              />
+            );
+          })}
         </DialogContent>
         <DialogActions>
           <button type="button" onClick={openCloseFunc}>
