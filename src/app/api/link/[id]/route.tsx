@@ -35,7 +35,8 @@ export async function GET( //gets links associated with a subtopic
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  // id being the id of the child
+  // id being the id of the subtopic that we are looking at
+  console.log('route getting links for:  ', params.id);
   try {
     await connect();
 

@@ -11,10 +11,15 @@ export async function POST(request: Request) {
     text: body.text,
     type: body.type,
     url: body.url,
+    parentID: body.parentID,
   });
 
+  console.log('trying to post: ', link);
   await link.save();
   await mongoose.disconnect();
+
+  // Return a response indicating success
+  return Response.json(link);
 }
 
 export async function GET() {
