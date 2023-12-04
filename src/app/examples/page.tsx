@@ -9,7 +9,6 @@ import Footer from '@/components/layouts/Footer';
 import TopicItem from '@/components/UI/TopicItem';
 import { mathLinks, religionLinks } from '@/data/topicData';
 import Carousel from '@/components/UI/Carousel';
-import TopicModal from '@/components/UI/TopicModal';
 import { GoPencil } from 'react-icons/go';
 
 export default function Examples() {

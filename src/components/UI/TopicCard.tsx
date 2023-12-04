@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { MdMoreVert, MdClose, MdSave } from 'react-icons/md';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { ITopic } from '@/data/Topic';
-import { apiBaseUrl } from '@/data/constants';
 
 interface TopicCardProps {
   title: string;
@@ -11,6 +9,7 @@ interface TopicCardProps {
   color: string;
   id: string;
   openCloseFunc: () => void;
+  reRenderFunc: () => void;
 }
 
 export default function TopicCard({
@@ -19,10 +18,12 @@ export default function TopicCard({
   color,
   id,
   openCloseFunc,
+  reRenderFunc,
 }: TopicCardProps) {
   const [editTitle, setEditTitle] = useState(title);
   const [editImg, setEditImg] = useState(img);
   const [editColor, setEditColor] = useState(color);
+  const [update, setUpdate] = useState(false);
 
   const [editMenuActive, setEditMenuActive] = useState(false);
   const [open, setOpen] = useState(false);
@@ -40,13 +41,14 @@ export default function TopicCard({
       image: editImg
     };
 
-    const response = await fetch(apiBaseUrl + `/topic/${id}`, {
+    const response = await fetch(`/api/topic/${id}`, {
       method: "put",
       body: JSON.stringify(data)
     });
 
     if (response.ok) {
-      window.location.reload();
+      openCloseEdit();
+      setUpdate(true);
     } else {
       console.error("Unable to load data");
     }
@@ -64,6 +66,13 @@ export default function TopicCard({
       document.addEventListener('click', closeEditMenu);
       return () => document.removeEventListener('click', closeEditMenu);
     }, [editMenuActive]);
+
+    useEffect(() => {
+      if (update) {
+        reRenderFunc();
+      }
+      return () => setUpdate(false);
+    }, [reRenderFunc, update])
 
   return (
     <>

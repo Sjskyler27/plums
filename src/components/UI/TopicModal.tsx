@@ -7,18 +7,17 @@ import {
 import { useEffect, useState } from 'react';
 import TopicItem from './TopicItem';
 import TopicCard from './TopicCard';
-import TopicModel from '@/data/TopicModel';
 import { ISubTopic } from '@/data/SubTopic';
-import { apiBaseUrl } from '@/data/constants';
 
 interface Props {
   title: string;
   image: string;
   color: string;
   id: string;
+  reRenderFunc: () => void
 }
 
-export default function TopicModal({ title, image, color, id }: Props) {
+export default function TopicModal({ title, image, color, id, reRenderFunc }: Props) {
   const emptySubTopics: ISubTopic[] = [];
   const [subTopics, setSubTopics] = useState(emptySubTopics);
   const [open, setOpen] = useState(false);
@@ -29,7 +28,7 @@ export default function TopicModal({ title, image, color, id }: Props) {
 
   useEffect(() => {
     async function getSubTopics() {
-      let response = await fetch(apiBaseUrl + `/sub-topic/${id}`);
+      let response = await fetch(`/api/sub-topic/${id}`);
       if (response.ok) {
         setSubTopics(await response.json());
       } else {
@@ -47,6 +46,7 @@ export default function TopicModal({ title, image, color, id }: Props) {
         color={color}
         id={id}
         openCloseFunc={openCloseFunc}
+        reRenderFunc={reRenderFunc}
       />
       <Dialog open={open} onClose={openCloseFunc}>
         <DialogTitle className="text-lg font-bold" style={{ color: color }}>
