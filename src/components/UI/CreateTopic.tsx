@@ -1,4 +1,3 @@
-import { apiBaseUrl } from "@/data/constants";
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { useState } from "react"
 import { MdAddCircleOutline, MdClose, MdSave } from "react-icons/md";
@@ -23,7 +22,7 @@ export default function CreateTopic() {
     }
 
     async function createTopic() {
-        const url = apiBaseUrl + "/topic";
+        const url = "/api/topic";
         const options = {
             method: "POST",
             body: JSON.stringify(topicData)
