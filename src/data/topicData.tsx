@@ -5,21 +5,29 @@ export const mathLinks: LinkModel[] = [
     text: 'MATH FOR THE REAL WORLD',
     type: 'link', // Use a colon (:) for assignment, not an equal sign (=)
     url: 'https://content.byui.edu/file/fb4c2d20-04c3-463d-93f6-725064a8b15d/18/fdmat108syllabus.html',
+    _id: '',
+    parentID: '',
   },
   {
     text: 'FIRST JUMP INTO CALCULUS',
     type: 'youtube', // Use a colon (:) for assignment, not an equal sign (=)
     url: 'https://www.youtube.com/watch?v=5yfh5cf4-0w',
+    _id: '',
+    parentID: '',
   },
   {
     text: 'DERIVATIVES FOR NEWBIES',
     type: 'pdf', // Use a colon (:) for assignment, not an equal sign (=)
     url: '#path_to_video',
+    _id: '',
+    parentID: '',
   },
   {
     text: 'TRIGONOMETRY EQUATIONS',
     type: 'txt', // Use a colon (:) for assignment, not an equal sign (=)
     url: '#path_to_page',
+    _id: '',
+    parentID: '',
   },
 ];
 export const religionLinks = [
