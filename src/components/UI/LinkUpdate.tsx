@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { apiBaseUrl } from '@/data/constants';
 
+// Assuming you have a Link interface defined similar to the one you provided for LinkInsert
+
 interface Link {
+  _id: string;
   type: string;
   url: string;
   text: string;
   parentID: string;
 }
 
-interface LinkInsertProps {
-  onInsert: (link: Link) => void;
-  parentID: string;
+interface LinkUpdateProps {
+  onUpdate: (link: Link) => void;
+  link: Link; // The existing link data to update
 }
 
-const LinkInsert: React.FC<LinkInsertProps> = ({ onInsert, parentID }) => {
-  const [selectedType, setSelectedType] = useState<string>('youtube');
-  const [url, setUrl] = useState<string>('');
-  const [text, setText] = useState<string>('');
+const LinkUpdate: React.FC<LinkUpdateProps> = ({ onUpdate, link }) => {
+  const [selectedType, setSelectedType] = useState<string>(link.type);
+  const [url, setUrl] = useState<string>(link.url);
+  const [text, setText] = useState<string>(link.text);
+
+  useEffect(() => {
+    setSelectedType(link.type);
+    setUrl(link.url);
+    setText(link.text);
+  }, [link]); // Update the form fields when the link data changes
 
   const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedType(event.target.value);
@@ -31,48 +40,58 @@ const LinkInsert: React.FC<LinkInsertProps> = ({ onInsert, parentID }) => {
   };
 
   const handleSubmit = async () => {
-    console.log('posting to ', `${apiBaseUrl}/link`);
+    console.log('updating link via ', `${apiBaseUrl}/link/${link._id}`);
     if (selectedType !== 'text' && !isValidUrl(url)) {
       alert('Invalid URL. Please provide a valid URL.');
       return;
     }
 
-    const linkData = {
+    const updatedLinkData = {
       type: selectedType,
       url: selectedType === 'text' ? '' : url,
       text: text,
-      parentID: parentID, // Include the parentID in the link data
     };
-    console.log('body', linkData);
 
     try {
-      const response = await fetch(`${apiBaseUrl}/link`, {
-        method: 'POST',
+      const response = await fetch(`${apiBaseUrl}/link/${link._id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(linkData),
+        body: JSON.stringify(updatedLinkData),
       });
 
       if (!response.ok) {
         throw new Error(`HTTP Error! Status: ${response.status}`);
       }
 
-      // Assuming the server responds with the newly created link data, you can parse the response JSON
-      const newLink = await response.json();
+      // Assuming the server responds with the updated link data, you can parse the response JSON
+      const updatedLink = await response.json();
 
-      // Call the onInsert callback with the newly created link
-      onInsert(newLink);
-
-      // Reset form fields
-      setSelectedType('youtube');
-      setUrl('');
-      setText('');
+      // Call the onUpdate callback with the updated link
+      onUpdate(updatedLink);
     } catch (error) {
       console.error('Error:', error);
       // Handle any errors here
     }
   };
+
+  async function deleteLink() {
+    try {
+      const response = await fetch(`${apiBaseUrl}/link/${link._id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP Error! Status: ${response.status}`);
+      } else {
+        alert('link deleted');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle any errors here
+    }
+  }
 
   const isValidUrl = (str: string) => {
     return str.startsWith('http') || str.startsWith('https');
@@ -80,7 +99,7 @@ const LinkInsert: React.FC<LinkInsertProps> = ({ onInsert, parentID }) => {
 
   return (
     <div className="bg-white p-4 rounded shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Insert a Link</h2>
+      <h2 className="text-xl font-semibold mb-4">Update Link</h2>
       <div className="mb-4">
         <label className="block mb-1">Select Link Type:</label>
         <select
@@ -120,10 +139,16 @@ const LinkInsert: React.FC<LinkInsertProps> = ({ onInsert, parentID }) => {
         className="bg-plum text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
         onClick={handleSubmit}
       >
-        Insert Link
+        Update Link
+      </button>
+      <button
+        className="bg-plum text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+        onClick={deleteLink}
+      >
+        Delete Link
       </button>
     </div>
   );
 };
 
-export default LinkInsert;
+export default LinkUpdate;

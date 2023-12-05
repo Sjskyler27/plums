@@ -56,3 +56,19 @@ export async function GET( //gets links associated with a subtopic
     return Response.json(err, { status: 500 });
   }
 }
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  console.log('deleting: ', params.id);
+  try {
+    await connect();
+    const result = await LinkModel.deleteOne({ _id: params.id });
+    await mongoose.disconnect();
+
+    return new Response('Topic deleted successfully', { status: 200 });
+  } catch (err) {
+    console.error(err);
+    return new Response('Internal Server Error', { status: 500 });
+  }
+}

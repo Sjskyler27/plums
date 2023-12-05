@@ -4,12 +4,14 @@ import { GoPencil } from 'react-icons/go';
 import { BsTrashFill } from 'react-icons/bs';
 import { AiOutlinePlus } from 'react-icons/ai';
 import LinkInsert from './LinkInsert'; // Replace with the actual path to your LinkInsert component
+import LinkUpdate from './LinkUpdate';
 import { apiBaseUrl } from '@/data/constants';
 
 // import styles from '@/components/UI/TopicItem.css';
 import Link from '../../data/LinkModel';
 import SubTopic from '@/data/SubTopic';
 import { set } from 'mongoose';
+// import LinkUpdate from './LinkUpdate';
 
 interface Props {
   title: string;
@@ -22,6 +24,8 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
   // console.log('topicItem subtopic ID: ', subtopicID);
   const [isOpen, setIsOpen] = useState(false);
   const [contentHeight, setContentHeight] = useState<number | null>(null);
+  // Add a state variable to track which link's update component is displayed
+  const [editLinkIndex, setEditLinkIndex] = useState<number | null>(null);
 
   const [links, setLinks] = useState<Link[]>([]); // State to store the fetched links
 
@@ -124,6 +128,14 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
     setLinkInsertVisible(false);
   };
 
+  // Function to toggle the visibility of the LinkUpdate component for a specific link
+  const toggleEditLink = (index: number) => {
+    setTimeout(() => {
+      resize(); // Call the resize function after half a second (500 milliseconds)
+    }, 100);
+    setEditLinkIndex(editLinkIndex === index ? null : index);
+  };
+
   return (
     <div ref={cardRef} className={`w-full mb-4 ${gradientColors}`}>
       <div
@@ -178,9 +190,21 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
               <GoPencil
                 style={{ fontSize: '20 px' }}
                 className="mt-2"
+                onClick={() => toggleEditLink(index)} // Toggle the visibility of the LinkUpdate component for this link
               ></GoPencil>
             </div>
           )
+        )}
+
+        {/* Render the LinkUpdate component for the clicked link */}
+        {editLinkIndex !== null && (
+          <LinkUpdate
+            onUpdate={() => {
+              toggleEditLink(editLinkIndex); // Close the LinkUpdate component when updating is done
+              fetchLinks(); // Fetch updated links
+            }}
+            link={links[editLinkIndex]} // Pass the link data to update
+          />
         )}
 
         {/* Render the LinkInsert component conditionally */}
