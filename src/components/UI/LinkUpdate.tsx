@@ -136,13 +136,13 @@ const LinkUpdate: React.FC<LinkUpdateProps> = ({ onUpdate, link }) => {
       </div>
 
       <button
-        className="bg-plum text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+        className="bg-plum m-1 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
         onClick={handleSubmit}
       >
         Update Link
       </button>
       <button
-        className="bg-plum text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+        className="bg-plum m-1 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
         onClick={deleteLink}
       >
         Delete Link

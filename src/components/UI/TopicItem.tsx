@@ -140,7 +140,7 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
     <div ref={cardRef} className={`w-full mb-4 ${gradientColors}`}>
       <div
         id="header"
-        className={` text-center text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all
+        className={` text-center text-white text-lg font-bold p-4 cursor-pointer hover:byzantium rounded-t-lg transition-all w-80
         ${
           !isOpen
             ? 'rounded-b-lg transition-rounded duration-300 delay-300' // change value to affect radius delay and speed
