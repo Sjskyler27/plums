@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import TopicItem from './TopicItem';
 import TopicCard from './TopicCard';
 import { ISubTopic } from '@/data/SubTopic';
+import { AddSubTopic } from './AddSubTopic';
 
 interface Props {
   title: string;
@@ -54,7 +55,6 @@ export default function TopicModal({ title, image, color, id, reRenderFunc }: Pr
         </DialogTitle>
         <DialogContent>
           {subTopics.map((childTopic, index) => {
-            // console.log(childTopic);
             return (
               <TopicItem
                 key={index}
@@ -64,6 +64,14 @@ export default function TopicModal({ title, image, color, id, reRenderFunc }: Pr
               />
             );
           })}
+          <AddSubTopic id={id} reRenderFunc={async () => {
+            let response = await fetch(`/api/sub-topic/${id}`);
+            if (response.ok) {
+              setSubTopics(await response.json());
+            } else {
+              console.log('Unable to get data');
+            }
+          }}/>
         </DialogContent>
         <DialogActions>
           <button type="button" onClick={openCloseFunc}>

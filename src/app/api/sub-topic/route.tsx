@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 
 export async function POST(req: Request) {
   try {
+    console.log("check");
     const body: ISubTopic = await req.json();
 
     await connect();

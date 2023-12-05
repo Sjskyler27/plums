@@ -21,3 +21,11 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
         return Response.json(err, { status: 500 });
     }
 }
+
+export async function PUT(req: Request, { params }: { params : { id: string } }) {
+    
+}
+
+export async function DELETE(req: Request, { params }: { params : { id: string } }) {
+
+}

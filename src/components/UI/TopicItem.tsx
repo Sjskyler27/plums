@@ -8,8 +8,7 @@ import { apiBaseUrl } from '@/data/constants';
 
 // import styles from '@/components/UI/TopicItem.css';
 import Link from '../../data/LinkModel';
-import SubTopic from '@/data/SubTopic';
-import { set } from 'mongoose';
+import { MdEdit } from 'react-icons/md';
 
 interface Props {
   title: string;
@@ -22,6 +21,7 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
   // console.log('topicItem subtopic ID: ', subtopicID);
   const [isOpen, setIsOpen] = useState(false);
   const [contentHeight, setContentHeight] = useState<number | null>(null);
+  const [editOpen, setEditOpen] = useState(false);
 
   const [links, setLinks] = useState<Link[]>([]); // State to store the fetched links
 
@@ -85,6 +85,9 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
   }, [isOpen]); // Only fetch links when the is open is true
 
   const toggleOpen = () => {
+    if (editOpen) {
+      setEditOpen(false);
+    }
     setIsOpen(!isOpen);
   };
 
@@ -137,6 +140,21 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
         onClick={toggleOpen}
         style={{ backgroundColor: color }}
       >
+        <button 
+          type='button'
+          style={{fontSize: "28px"}}
+          className='float-left'
+          onClick={() => {
+            if (isOpen) {
+              setEditOpen(!editOpen)
+            } else {
+              setEditOpen(!editOpen)
+              setIsOpen(false);
+            }
+          }}
+          >
+          <MdEdit/>
+        </button>
         {title}
         <span id="arrowIcon" className="float-right">
           {isOpen ? <span>&#9650;</span> : <span>&#9660;</span>}
@@ -150,7 +168,10 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
         }`}
         style={contentStyle}
       >
-        {links.map(
+        { editOpen ? 
+        <div>
+          
+        </div> : links.map(
           (
             link,
             index // dynamically add link text, url and image
@@ -182,6 +203,7 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
             </div>
           )
         )}
+        {}
 
         {/* Render the LinkInsert component conditionally */}
         {isLinkInsertVisible && (
