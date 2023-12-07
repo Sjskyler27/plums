@@ -101,10 +101,14 @@ export default function TopicCard({
             >
               <ul className="bg-palePurple p-3 rounded-lg shadow-lg">
                 <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
-                  <p onClick={openCloseEdit}>Edit</p>
+                  <p onClick={openCloseEdit} className="cursor-pointer">
+                    Edit
+                  </p>
                 </li>
                 <li className="text-center p-1 hover:bg-white rounded-md transition-colors duration-300">
-                  <p onClick={deleteTopicCard}>Delete</p>
+                  <p onClick={deleteTopicCard} className="cursor-pointer">
+                    Delete
+                  </p>
                 </li>
               </ul>
             </div>

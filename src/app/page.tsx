@@ -4,18 +4,19 @@ import Header from '@/components/layouts/Header';
 import Footer from '@/components/layouts/Footer';
 import TopicModal from '@/components/UI/TopicModal';
 import Carousel from '@/components/UI/Carousel';
+import CustomButton from '@/components/UI/CustomButton';
 import { ITopic } from '@/data/Topic';
 import CreateTopic from '@/components/UI/CreateTopic';
 import SmallSpinner from '@/components/SmallSpinner';
 
 export default function Home() {
-  const emptyTopics: ITopic[] = []
+  const emptyTopics: ITopic[] = [];
   const [topics, setTopics] = useState(emptyTopics);
   const [loading, setLoading] = useState(false);
 
   async function fetchTopics() {
     setLoading(true);
-    const response = await fetch("/api/topic");
+    const response = await fetch('/api/topic');
     if (response.ok) {
       setTopics(await response.json());
     } else {
@@ -43,10 +44,22 @@ export default function Home() {
             ]}
           />
         </div>
+        <br></br>
+        <div>
+          <input
+            type="text"
+            className="border border-plum p-2 rounded mr-1"
+            placeholder="Search by tag"
+          />
+          <CustomButton>Search</CustomButton>
+        </div>
+
         <div className="mx-auto grid items-center justify-center ">
           <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-10 pb-10">
-            {
-              loading ? <SmallSpinner /> : topics.map((item, index) => (
+            {loading ? (
+              <SmallSpinner />
+            ) : (
+              topics.map((item, index) => (
                 <div key={index} className="col-span-1">
                   <TopicModal
                     image={item.image}
@@ -57,7 +70,7 @@ export default function Home() {
                   />
                 </div>
               ))
-            }
+            )}
             <CreateTopic />
           </div>
         </div>
