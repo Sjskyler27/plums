@@ -54,7 +54,7 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
     }
 
     return (
-        <div>
+        <div className="max-w-[288px]">
             <div className='text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3'>
               <label htmlFor="title" className='mt-auto mb-auto'>Title</label>
               <input 
@@ -69,7 +69,7 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
                   });
                 }} 
                 defaultValue={subTopic.title}
-                className='rounded-md border-byzantium border-2 p-2 w-full sm:w-56 sm:max-w-[256px]'/>
+                className='rounded-md border-byzantium border-2 p-2 w-60 sm:w-56 sm:max-w-[256px]'/>
             </div>
             <div className='text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3'>
               <label htmlFor="color" className='mt-auto mb-auto'>Color</label>
@@ -85,10 +85,10 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
                       });
                 }} 
                 defaultValue={subTopic.color}
-                className='rounded-md border-byzantium border-2 p-2 w-full sm:w-56 sm:max-w-[256px]'/>
+                className='rounded-md border-byzantium border-2 p-2 w-60 sm:w-56 sm:max-w-[256px]'/>
             </div>
             <div className='text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3'>
-              <label htmlFor="description" className='mt-auto mb-auto'>Description</label>
+              <label htmlFor="description" className='mt-auto mb-auto'>Desc </label>
               <input 
                 type="text"
                 name="description"
@@ -101,7 +101,7 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
                       });
                 }}
                 defaultValue={subTopic.description}
-                className='rounded-md border-byzantium border-2 p-2 w-full sm:w-56 sm:max-w-[256px]'/>
+                className='rounded-md border-byzantium border-2 p-2 w-60 sm:w-56 sm:max-w-[256px]'/>
             </div>
             <button 
                 type="button"
