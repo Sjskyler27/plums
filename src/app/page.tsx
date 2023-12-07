@@ -73,7 +73,7 @@ export default function Home() {
         <div>
           <input
             type="text"
-            className="border border-plum p-2 rounded mr-1"
+            className="border-2 border-plum p-2 rounded mr-1"
             placeholder="Search by tag"
             value={searchInput}
             onChange={e => setSearchInput(e.target.value)}

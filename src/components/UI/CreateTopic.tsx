@@ -54,7 +54,7 @@ export default function CreateTopic() {
           }}
           onClick={toggleCreateDialog}
         >
-          <MdAddCircleOutline />
+          <MdAddCircleOutline className="text-plum" />
         </button>
       </div>
       <Dialog open={open} onClose={toggleCreateDialog}>
