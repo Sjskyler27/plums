@@ -19,6 +19,10 @@ const subTopicSchema = new Schema({
     type: String,
     required: true,
   },
+  parentTopicID: {
+    type: String,
+    required: true
+  }
 });
 
 const SubTopic =
