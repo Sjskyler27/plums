@@ -12,7 +12,6 @@ interface SubTopicModel {
     title: string;
     description: string;
     color: string;
-    parentTopicID: string;
 }
 
 
@@ -20,16 +19,15 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
     title: "",
     description: "",
     color: "",
-    parentTopicID: parentTopicID
 } }: AddSubTopicProps) {
     const isEdit = subTopicID !== "";
     const [subTopic, setSubTopic] = useState(subTopicModel);
 
     async function create() {
-        const url = "/api/sub-topic/";
+        const url = `/api/topic/${parentTopicID}/sub-topic`;
         const options = {
             method: "post",
-            body: JSON.stringify(subTopic)
+            body: JSON.stringify({ ...subTopic, parentTopicID })
         };
         const response = await fetch(url, options);
 
@@ -41,10 +39,10 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
     }
 
     async function update() {
-        const url = `/api/sub-topic/${subTopicID}`;
+        const url = `/api/topic/${parentTopicID}/sub-topic/${subTopicID}`;
         const options = {
             method: "put",
-            body: JSON.stringify(subTopic)
+            body: JSON.stringify({ ...subTopic, parentTopicID })
         };
         const response = await fetch(url, options);
 
@@ -67,8 +65,7 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
                   setSubTopic({
                     title: ev.target.value,
                     description: subTopic.description,
-                    color: subTopic.color,
-                    parentTopicID: subTopic.parentTopicID
+                    color: subTopic.color
                   });
                 }} 
                 defaultValue={subTopic.title}
@@ -84,8 +81,7 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
                     setSubTopic({
                         title: subTopic.title,
                         description: subTopic.description,
-                        color: ev.target.value,
-                        parentTopicID: subTopic.parentTopicID
+                        color: ev.target.value
                       });
                 }} 
                 defaultValue={subTopic.color}
@@ -101,8 +97,7 @@ export default function AddEditSubTopic({ parentTopicID, reRenderFunc, subTopicI
                     setSubTopic({
                         title: subTopic.title,
                         description: ev.target.value,
-                        color: subTopic.color,
-                        parentTopicID: subTopic.parentTopicID
+                        color: subTopic.color
                       });
                 }}
                 defaultValue={subTopic.description}

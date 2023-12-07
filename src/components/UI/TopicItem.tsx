@@ -9,14 +9,19 @@ import { apiBaseUrl } from '@/data/constants';
 // import styles from '@/components/UI/TopicItem.css';
 import Link from '../../data/LinkModel';
 import { MdEdit } from 'react-icons/md';
+import AddEditSubTopic from './AddEditSubTopic';
+import { ISubTopic } from '@/data/SubTopic';
 
 interface Props {
-  title: string;
-  color: string;
-  subtopicID: string;
+  childTopic: ISubTopic,
+  reRenderFunc: () => void;
 }
 
-export default function TopicItem({ title, color, subtopicID }: Props) {
+export default function TopicItem({ childTopic, reRenderFunc }: Props) {
+  const title = childTopic.title;
+  const color = childTopic.color;
+  const subtopicID = childTopic._id;
+  const parentTopicID = childTopic.parentTopicID;
   // keep in mind use state requires use client on the page or component that uses it!
   // console.log('topicItem subtopic ID: ', subtopicID);
   const [isOpen, setIsOpen] = useState(false);
@@ -169,9 +174,11 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
         style={contentStyle}
       >
         { editOpen ? 
-        <div>
-          
-        </div> : links.map(
+        <AddEditSubTopic parentTopicID={parentTopicID} reRenderFunc={reRenderFunc} subTopicID={subtopicID} subTopicModel={{
+          title: title,
+          description: childTopic.description || "",
+          color: color
+        }} /> : links.map(
           (
             link,
             index // dynamically add link text, url and image
@@ -202,15 +209,16 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
               ></GoPencil>
             </div>
           )
-        )}
-        {}
-
+        )
+        
+        }
         {/* Render the LinkInsert component conditionally */}
-        {isLinkInsertVisible && (
+        {!editOpen && isLinkInsertVisible && (
           <LinkInsert onInsert={handleLinkInsert} parentID={subtopicID} />
         )}
 
-        <div className="m-2 text-center">
+
+        {!editOpen && (<div className="m-2 text-center">
           <button
             type="button"
             className="bg-blue pr-4 pl-4 pt-1 pb-1 mr-1 rounded-md text-white hover:bg-skyMagenta hover:text-palePurple"
@@ -225,6 +233,7 @@ export default function TopicItem({ title, color, subtopicID }: Props) {
             <BsTrashFill style={{ fontSize: '32px' }} />
           </button>
         </div>
+        )}
       </div>
     </div>
   );

@@ -52,7 +52,7 @@ export default function Home() {
                     image={item.image}
                     title={item.title}
                     color={item.color}
-                    id={item._id}
+                    topicId={item._id}
                     reRenderFunc={fetchTopics}
                   />
                 </div>

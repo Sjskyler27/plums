@@ -11,15 +11,13 @@ interface SubTopicModel {
     title: string;
     description: string;
     color: string;
-    parentTopicID: string;
 }
 
 export function AddSubTopic({ id, reRenderFunc } : AddSubTopicProps) {
     const defaultSubTopic: SubTopicModel = {
         title: "",
         description: "",
-        color: "",
-        parentTopicID: id
+        color: ""
     };
     const [showAdd, setShowAdd] = useState(false);
 

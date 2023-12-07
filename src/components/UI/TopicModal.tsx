@@ -14,11 +14,11 @@ interface Props {
   title: string;
   image: string;
   color: string;
-  id: string;
+  topicId: string;
   reRenderFunc: () => void
 }
 
-export default function TopicModal({ title, image, color, id, reRenderFunc }: Props) {
+export default function TopicModal({ title, image, color, topicId, reRenderFunc }: Props) {
   const emptySubTopics: ISubTopic[] = [];
   const [subTopics, setSubTopics] = useState(emptySubTopics);
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function TopicModal({ title, image, color, id, reRenderFunc }: Pr
 
   useEffect(() => {
     async function getSubTopics() {
-      let response = await fetch(`/api/sub-topic/${id}`);
+      let response = await fetch(`/api/topic/${topicId}/sub-topic`);
       if (response.ok) {
         setSubTopics(await response.json());
       } else {
@@ -37,7 +37,7 @@ export default function TopicModal({ title, image, color, id, reRenderFunc }: Pr
       }
     }
     if (open) getSubTopics();
-  }, [id, open]);
+  }, [topicId, open]);
 
   return (
     <>
@@ -45,7 +45,7 @@ export default function TopicModal({ title, image, color, id, reRenderFunc }: Pr
         title={title}
         img={image}
         color={color}
-        id={id}
+        id={topicId}
         openCloseFunc={openCloseFunc}
         reRenderFunc={reRenderFunc}
       />
@@ -58,14 +58,20 @@ export default function TopicModal({ title, image, color, id, reRenderFunc }: Pr
             return (
               <TopicItem
                 key={index}
-                title={childTopic.title}
-                color={childTopic.color}
-                subtopicID={childTopic._id}
+                childTopic={childTopic}
+                reRenderFunc={async () => {
+                  let response = await fetch(`/api/topic/${topicId}/sub-topic`);
+                  if (response.ok) {
+                    setSubTopics(await response.json());
+                  } else {
+                    console.log('Unable to get data');
+                  }
+                }}
               />
             );
           })}
-          <AddSubTopic id={id} reRenderFunc={async () => {
-            let response = await fetch(`/api/sub-topic/${id}`);
+          <AddSubTopic id={topicId} reRenderFunc={async () => {
+            let response = await fetch(`/api/topic/${topicId}/sub-topic`);
             if (response.ok) {
               setSubTopics(await response.json());
             } else {
