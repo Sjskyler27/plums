@@ -65,6 +65,7 @@ export default function TopicCard({
 
     if (response.ok) {
       alert('topic deleted');
+      location.reload();
     } else {
       alert('Unable to delete data');
     }
