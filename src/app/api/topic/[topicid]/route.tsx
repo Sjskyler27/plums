@@ -15,11 +15,15 @@ export async function PUT(
       throw new Error('Unable to find data');
     }
 
+    console.log('body', body);
+
     topic.title = body.title;
     topic.image = body.image;
     topic.color = body.color;
+    topic.tags = body.tags;
 
     topic = await topic.save();
+    console.log('new topic: ', topic);
     await mongoose.disconnect();
 
     return Response.json(topic);

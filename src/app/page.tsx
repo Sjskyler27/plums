@@ -65,6 +65,7 @@ export default function Home() {
                     image={item.image}
                     title={item.title}
                     color={item.color}
+                    tags={item.tags}
                     topicId={item._id}
                     reRenderFunc={fetchTopics}
                   />

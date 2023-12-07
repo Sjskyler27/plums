@@ -15,10 +15,18 @@ interface Props {
   image: string;
   color: string;
   topicId: string;
-  reRenderFunc: () => void
+  tags: any[];
+  reRenderFunc: () => void;
 }
 
-export default function TopicModal({ title, image, color, topicId, reRenderFunc }: Props) {
+export default function TopicModal({
+  title,
+  image,
+  color,
+  tags,
+  topicId,
+  reRenderFunc,
+}: Props) {
   const emptySubTopics: ISubTopic[] = [];
   const [subTopics, setSubTopics] = useState(emptySubTopics);
   const [open, setOpen] = useState(false);
@@ -45,6 +53,7 @@ export default function TopicModal({ title, image, color, topicId, reRenderFunc 
         title={title}
         img={image}
         color={color}
+        tags={tags}
         id={topicId}
         openCloseFunc={openCloseFunc}
         reRenderFunc={reRenderFunc}
@@ -70,14 +79,17 @@ export default function TopicModal({ title, image, color, topicId, reRenderFunc 
               />
             );
           })}
-          <AddSubTopic id={topicId} reRenderFunc={async () => {
-            let response = await fetch(`/api/topic/${topicId}/sub-topic`);
-            if (response.ok) {
-              setSubTopics(await response.json());
-            } else {
-              console.log('Unable to get data');
-            }
-          }}/>
+          <AddSubTopic
+            id={topicId}
+            reRenderFunc={async () => {
+              let response = await fetch(`/api/topic/${topicId}/sub-topic`);
+              if (response.ok) {
+                setSubTopics(await response.json());
+              } else {
+                console.log('Unable to get data');
+              }
+            }}
+          />
         </DialogContent>
         <DialogActions>
           <button type="button" onClick={openCloseFunc}>

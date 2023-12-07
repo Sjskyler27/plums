@@ -13,6 +13,7 @@ interface TopicCardProps {
   img: string;
   color: string;
   id: string;
+  tags: any[];
   openCloseFunc: () => void;
   reRenderFunc: () => void;
 }
@@ -21,6 +22,7 @@ export default function TopicCard({
   title,
   img,
   color,
+  tags,
   id,
   openCloseFunc,
   reRenderFunc,
@@ -28,6 +30,17 @@ export default function TopicCard({
   const [editTitle, setEditTitle] = useState(title);
   const [editImg, setEditImg] = useState(img);
   const [editColor, setEditColor] = useState(color);
+  const [newTag, setNewTag] = useState(''); // State for the tag input field
+  const [editTags, setEditTags] = useState(tags);
+
+  const addTag = () => {
+    console.log(editTags);
+    if (newTag !== '') {
+      setEditTags(prevTags => [...prevTags, newTag]);
+      setNewTag(''); // Clear the input field after adding the tag
+    }
+  };
+
   const [update, setUpdate] = useState(false);
 
   const [editMenuActive, setEditMenuActive] = useState(false);
@@ -44,13 +57,15 @@ export default function TopicCard({
       title: editTitle,
       color: editColor,
       image: editImg,
+      tags: editTags,
     };
+    console.log('new tags: ', data);
 
     const response = await fetch(`/api/topic/${id}`, {
       method: 'put',
       body: JSON.stringify(data),
     });
-
+    console.log('putting: ', data);
     if (response.ok) {
       openCloseEdit();
       setUpdate(true);
@@ -69,6 +84,14 @@ export default function TopicCard({
     } else {
       alert('Unable to delete data');
     }
+  }
+
+  function deleteTag(tagToDelete: string) {
+    // Use the filter method to create a new array without the tag to delete
+    const updatedTags = editTags.filter(tag => tag !== tagToDelete);
+
+    // Update the state with the new array of tags
+    setEditTags(updatedTags);
   }
 
   useEffect(() => {
@@ -192,6 +215,46 @@ export default function TopicCard({
                 defaultValue={editImg}
                 className="rounded-md border-byzantium border-2 p-2 w-full sm:w-56 sm:max-w-[256px]"
               />
+            </div>
+            <div className="text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3">
+              <label htmlFor="tags" className="mt-auto mb-auto">
+                Tags
+              </label>
+              <div className="flex">
+                <input
+                  type="text"
+                  name="tags"
+                  id="tags"
+                  value={newTag}
+                  onChange={ev => {
+                    setNewTag(ev.target.value);
+                  }}
+                  className="rounded-md border-byzantium border-2 p-2 w-full sm:w-56 sm:max-w-[256px]"
+                />
+                <button
+                  type="button"
+                  onClick={addTag}
+                  className="bg-plum pr-2 pl-2 pt-1 pb-1 ml-2 rounded-md text-white hover:bg-darkBlue hover:text-skyMagenta"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+            <div>
+              {editTags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="bg-plum text-white px-2 py-1 rounded-full mr-2"
+                >
+                  <span
+                    className="cursor-pointer"
+                    onClick={() => deleteTag(tag)}
+                  >
+                    X{' '}
+                  </span>
+                  {tag}
+                </span>
+              ))}
             </div>
           </DialogContent>
           <DialogActions>
