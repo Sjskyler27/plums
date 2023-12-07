@@ -148,7 +148,12 @@ export default function TopicCard({
             style={{ backgroundColor: color }}
           >
             <div className="flex justify-between pt-3 pb-3 leading-4">
-              <p className="mt-auto mb-auto pl-2">{title}</p>
+              <p
+                className="mt-auto mb-auto pl-2"
+                title={`Tags: ${editTags.join(', ')}`}
+              >
+                {title}
+              </p>
               <button
                 type="button"
                 onClick={e => {
