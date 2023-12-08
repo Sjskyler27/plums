@@ -11,7 +11,7 @@ import AddEditSubTopic from './AddEditSubTopic';
 import { ISubTopic } from '@/data/SubTopic';
 
 interface Props {
-  childTopic: ISubTopic,
+  childTopic: ISubTopic;
   reRenderFunc: () => void;
 }
 
@@ -75,7 +75,7 @@ export default function TopicItem({ childTopic, reRenderFunc }: Props) {
             console.log(isOpen);
             resize(); // Call the resize function after half a second (500 milliseconds)
           }
-        }, 100); // delay to make sure it resizes
+        }, 50); // delay to make sure it resizes
       }
     } catch (error) {
       console.error('Error:', error);
@@ -89,10 +89,16 @@ export default function TopicItem({ childTopic, reRenderFunc }: Props) {
     }
   }, [isOpen]); // Only fetch links when the is open is true
 
+  useEffect(() => {
+    setTimeout(() => {
+      resize(); // Call the resize function after half a second (500 milliseconds)
+    }, 100); // delay to make sure it resizes
+  }, [editOpen]); // Only fetch links when the is open is true
+
   const toggleOpen = () => {
-    if (editOpen) {
-      setEditOpen(false);
-    }
+    // if (editOpen) {
+    //   setEditOpen(false);
+    // }
     setIsOpen(!isOpen);
   };
 
@@ -153,21 +159,16 @@ export default function TopicItem({ childTopic, reRenderFunc }: Props) {
         onClick={toggleOpen}
         style={{ backgroundColor: color }}
       >
-        <button 
-          type='button'
-          style={{fontSize: "28px"}}
-          className='float-left'
+        {/* <button
+          type="button"
+          style={{ fontSize: '28px' }}
+          className="float-left"
           onClick={() => {
-            if (isOpen) {
-              setEditOpen(!editOpen)
-            } else {
-              setEditOpen(!editOpen)
-              setIsOpen(false);
-            }
+            setEditOpen(!editOpen);
           }}
-          >
-          <MdEdit/>
-        </button>
+        >
+          <MdEdit />
+        </button> */}
         {title}
         <span id="arrowIcon" className="float-right">
           {isOpen ? <span>&#9650;</span> : <span>&#9660;</span>}
@@ -181,42 +182,51 @@ export default function TopicItem({ childTopic, reRenderFunc }: Props) {
         }`}
         style={contentStyle}
       >
-        { editOpen ? 
-        <AddEditSubTopic parentTopicID={parentTopicID} reRenderFunc={reRenderFunc} subTopicID={subtopicID} subTopicModel={{
-          title: title,
-          description: childTopic.description || "",
-          color: color
-        }} /> : links.map(
-          (
-            link,
-            index // dynamically add link text, url and image
-          ) => (
-            <div
-              id="linksIcoWrapper"
-              key={index}
-              className="flex text-center p-auto"
-            >
-              <Image
-                src={`/icons/${link.type}.png`}
-                alt={`${link.type}`}
-                width={20}
-                height={20}
-                className="mt-3 w-5 h-5"
-              />
-              <a
-                className={`  p-2 text-byzantium underline font-extrabold hover:text-darkBlue transition-colors duration-300`}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
+        {editOpen ? (
+          <AddEditSubTopic
+            parentTopicID={parentTopicID}
+            reRenderFunc={reRenderFunc}
+            subTopicID={subtopicID}
+            subTopicModel={{
+              title: title,
+              description: childTopic.description || '',
+              color: color,
+            }}
+            onSave={() => setEditOpen(false)}
+          />
+        ) : (
+          links.map(
+            (
+              link,
+              index // dynamically add link text, url and image
+            ) => (
+              <div
+                id="linksIcoWrapper"
+                key={index}
+                className="flex text-center p-auto"
               >
-                {link.text}
-              </a>
-              <GoPencil
-                style={{ fontSize: '20 px' }}
-                className="mt-2"
-                onClick={() => toggleEditLink(index)} // Toggle the visibility of the LinkUpdate component for this link
-              ></GoPencil>
-            </div>
+                <Image
+                  src={`/icons/${link.type}.png`}
+                  alt={`${link.type}`}
+                  width={20}
+                  height={20}
+                  className="mt-3 w-5 h-5"
+                />
+                <a
+                  className={`  p-2 text-byzantium underline font-extrabold hover:text-darkBlue transition-colors duration-300`}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.text}
+                </a>
+                <GoPencil
+                  style={{ fontSize: '20 px' }}
+                  className="mt-2"
+                  onClick={() => toggleEditLink(index)} // Toggle the visibility of the LinkUpdate component for this link
+                ></GoPencil>
+              </div>
+            )
           )
         )}
 
@@ -236,22 +246,27 @@ export default function TopicItem({ childTopic, reRenderFunc }: Props) {
           <LinkInsert onInsert={handleLinkInsert} parentID={subtopicID} />
         )}
 
-
-        {!editOpen && (<div className="m-2 text-center">
-          <button
-            type="button"
-            className="bg-blue pr-4 pl-4 pt-1 pb-1 mr-1 rounded-md text-white hover:bg-skyMagenta hover:text-palePurple"
-            onClick={toggleLinkInsert}
-          >
-            <AiOutlinePlus style={{ fontSize: '32px' }} />
-          </button>
-          <button
-            type="button"
-            className="bg-byzantium pr-4 pl-4 pt-1 pb-1 ml-1 rounded-md text-white hover:bg-skyMagenta hover:text-palePurple"
-          >
-            <BsTrashFill style={{ fontSize: '32px' }} />
-          </button>
-        </div>
+        {!editOpen && (
+          <div className="m-2 text-center">
+            <button
+              type="button"
+              className="bg-blue pr-4 pl-4 pt-1 pb-1 mr-1 rounded-md text-white hover:bg-skyMagenta hover:text-palePurple"
+              onClick={toggleLinkInsert}
+            >
+              <AiOutlinePlus style={{ fontSize: '32px' }} />
+            </button>
+            <button
+              type="button"
+              className="bg-byzantium pr-4 pl-4 pt-1 pb-1 ml-1 rounded-md text-white hover:bg-skyMagenta hover:text-palePurple"
+            >
+              <MdEdit
+                style={{ fontSize: '32px' }}
+                onClick={() => {
+                  setEditOpen(!editOpen);
+                }}
+              />
+            </button>
+          </div>
         )}
       </div>
     </div>
