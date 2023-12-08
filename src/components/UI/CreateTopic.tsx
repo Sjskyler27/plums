@@ -66,6 +66,7 @@ export default function CreateTopic() {
                 Title
               </label>
               <input
+                placeholder="example title"
                 type="text"
                 name="title"
                 id="title"
@@ -86,6 +87,7 @@ export default function CreateTopic() {
                 Color
               </label>
               <input
+                placeholder="blue or #123456"
                 type="text"
                 name="color"
                 id="color"
@@ -106,6 +108,7 @@ export default function CreateTopic() {
                 Image
               </label>
               <input
+                placeholder="any image url"
                 type="text"
                 name="image"
                 id="image"

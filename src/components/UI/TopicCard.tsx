@@ -181,6 +181,7 @@ export default function TopicCard({
                 Title
               </label>
               <input
+                placeholder="example title"
                 type="text"
                 name="title"
                 id="title"
@@ -196,6 +197,7 @@ export default function TopicCard({
                 Color
               </label>
               <input
+                placeholder="blue or #123456"
                 type="text"
                 name="color"
                 id="color"
@@ -211,6 +213,7 @@ export default function TopicCard({
                 Image
               </label>
               <input
+                placeholder="any image url "
                 type="text"
                 name="image"
                 id="image"
@@ -227,6 +230,7 @@ export default function TopicCard({
               </label>
               <div className="flex">
                 <input
+                  placeholder="use any tag you want"
                   type="text"
                   name="tags"
                   id="tags"
