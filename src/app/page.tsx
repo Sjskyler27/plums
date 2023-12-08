@@ -14,11 +14,36 @@ export default function Home() {
   const [topics, setTopics] = useState(emptyTopics);
   const [loading, setLoading] = useState(false);
 
+  // async function fetchTopics() {
+  //   setLoading(true);
+  //   const response = await fetch('/api/topic');
+  //   if (response.ok) {
+  //     setTopics(await response.json());
+  //   } else {
+  //     console.error('Unable to get data');
+  //   }
+  //   setLoading(false);
+  // }
+  const [searchInput, setSearchInput] = useState('');
+  const [filteredTopics, setFilteredTopics] = useState([]);
+
   async function fetchTopics() {
     setLoading(true);
     const response = await fetch('/api/topic');
     if (response.ok) {
-      setTopics(await response.json());
+      const allTopics = await response.json();
+
+      if (searchInput === '') {
+        setFilteredTopics(allTopics); // Show all topics if no search query
+      } else {
+        // Filter topics based on the search input
+        const filtered = allTopics.filter((topic: ITopic) => {
+          return topic.tags.some((tag: string) =>
+            tag.toLowerCase().includes(searchInput.toLowerCase())
+          );
+        });
+        setFilteredTopics(filtered);
+      }
     } else {
       console.error('Unable to get data');
     }
@@ -48,10 +73,14 @@ export default function Home() {
         <div>
           <input
             type="text"
-            className="border border-plum p-2 rounded mr-1"
+            className="border-2 border-plum p-2 rounded mr-1"
             placeholder="Search by tag"
+            value={searchInput}
+            onChange={e => setSearchInput(e.target.value)}
           />
-          <CustomButton>Search</CustomButton>
+          <span onClick={fetchTopics}>
+            <CustomButton>Search</CustomButton>
+          </span>
         </div>
 
         <div className="mx-auto grid items-center justify-center ">
@@ -59,12 +88,13 @@ export default function Home() {
             {loading ? (
               <SmallSpinner />
             ) : (
-              topics.map((item, index) => (
+              (filteredTopics as ITopic[]).map((item, index) => (
                 <div key={index} className="col-span-1">
                   <TopicModal
                     image={item.image}
                     title={item.title}
                     color={item.color}
+                    tags={item.tags}
                     topicId={item._id}
                     reRenderFunc={fetchTopics}
                   />

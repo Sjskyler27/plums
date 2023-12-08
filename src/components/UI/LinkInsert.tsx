@@ -98,6 +98,7 @@ const LinkInsert: React.FC<LinkInsertProps> = ({ onInsert, parentID }) => {
         <div className="mb-4">
           <label className="block mb-1">Enter URL:</label>
           <input
+            placeholder="content url"
             type="text"
             className="w-full py-2 px-3 border rounded"
             value={url}
@@ -109,6 +110,7 @@ const LinkInsert: React.FC<LinkInsertProps> = ({ onInsert, parentID }) => {
       <div className="mb-4">
         <label className="block mb-1">Enter Text:</label>
         <input
+          placeholder="descriptive line url"
           type="text"
           className="w-full py-2 px-3 border rounded"
           value={text}
