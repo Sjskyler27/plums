@@ -43,6 +43,7 @@ export function AddSubTopic({ id, reRenderFunc }: AddSubTopicProps) {
             reRenderFunc();
             setShowAdd(false);
           }}
+          onSave={() => setShowAdd(false)}
         />
       ) : (
         <></>
