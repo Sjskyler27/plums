@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MdSave } from 'react-icons/md';
+import { MdDelete, MdSave } from 'react-icons/md';
 
 export interface AddSubTopicProps {
   parentTopicID: string;
@@ -61,6 +61,21 @@ export default function AddEditSubTopic({
     }
   }
 
+  async function deleteSubTopic() {
+    const url = `/api/topic/${parentTopicID}/sub-topic/${subTopicID}`;
+    const options = {
+      method: "delete"
+    }
+    const response = await fetch(url, options);
+
+    if (response.ok) {
+      reRenderFunc();
+      onSave();
+    } else {
+      console.error('Unable to delete');
+    }
+  }
+
   return (
     <div className="max-w-[288px]">
       <div className="text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3">
@@ -105,7 +120,7 @@ export default function AddEditSubTopic({
       </div>
       <div className="text-center sm:text-left sm:flex sm:justify-between mb-2 mt-2 gap-3">
         <label htmlFor="description" className="mt-auto mb-auto">
-          Desc{' '}
+          Desc
         </label>
         <input
           placeholder="a short description"
@@ -132,6 +147,15 @@ export default function AddEditSubTopic({
       >
         <MdSave className="text-plum" />
       </button>
+      {isEdit && 
+        <button 
+        type="button" 
+        style={{ fontSize: '32px' }} 
+        onClick={deleteSubTopic}
+        >
+          <MdDelete />
+        </button>
+      }
     </div>
   );
 }

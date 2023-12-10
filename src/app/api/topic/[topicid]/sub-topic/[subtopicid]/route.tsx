@@ -1,3 +1,4 @@
+import LinkModel, { ILinkModel } from "@/data/Links";
 import SubTopic, { ISubTopic } from "@/data/SubTopic";
 import Topic, { ITopic } from "@/data/Topic";
 import connect from "@/data/connect";
@@ -33,6 +34,7 @@ export async function PUT(req: Request, { params }: { params : { topicid: string
 
 export async function DELETE(req: Request, { params }: { params : { topicid: string, subtopicid: string } }) {
     try {
+        await connect();
         const topic: ITopic | null | undefined = await Topic.findById(params.topicid);
         if (!topic) {
             throw new Error("Unable to find Topic");
@@ -42,6 +44,16 @@ export async function DELETE(req: Request, { params }: { params : { topicid: str
         if (!subTopic) {
             throw new Error("Unable to find Subtopic");
         }
+
+        let links: ILinkModel[] = await LinkModel.find({ parentID: subTopic._id });
+
+        for (let link of links) {
+            await link.deleteOne();
+        }
+        await subTopic.deleteOne();
+        await mongoose.disconnect();
+
+        return Response.json({ success: true }, { status: 200 });
         
     } catch (err) {
         return Response.json(err, {status: 500});

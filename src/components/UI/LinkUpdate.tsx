@@ -53,7 +53,7 @@ const LinkUpdate: React.FC<LinkUpdateProps> = ({ onUpdate, link }) => {
     };
 
     try {
-      const response = await fetch(`${apiBaseUrl}/link/${link._id}`, {
+      const response = await fetch(`/api/link/${link._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

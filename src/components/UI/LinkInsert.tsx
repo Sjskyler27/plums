@@ -31,7 +31,7 @@ const LinkInsert: React.FC<LinkInsertProps> = ({ onInsert, parentID }) => {
   };
 
   const handleSubmit = async () => {
-    console.log('posting to ', `${apiBaseUrl}/link`);
+    console.log('posting to ', `/link`);
     if (selectedType !== 'text' && !isValidUrl(url)) {
       alert('Invalid URL. Please provide a valid URL.');
       return;
@@ -46,7 +46,7 @@ const LinkInsert: React.FC<LinkInsertProps> = ({ onInsert, parentID }) => {
     console.log('body', linkData);
 
     try {
-      const response = await fetch(`${apiBaseUrl}/link`, {
+      const response = await fetch(`/api/link`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

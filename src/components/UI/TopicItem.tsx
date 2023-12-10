@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { GoPencil } from 'react-icons/go';
-import { BsTrashFill } from 'react-icons/bs';
 import { AiOutlinePlus } from 'react-icons/ai';
 import LinkInsert from './LinkInsert'; // Replace with the actual path to your LinkInsert component
 import LinkUpdate from './LinkUpdate';
@@ -159,16 +158,6 @@ export default function TopicItem({ childTopic, reRenderFunc }: Props) {
         onClick={toggleOpen}
         style={{ backgroundColor: color }}
       >
-        {/* <button
-          type="button"
-          style={{ fontSize: '28px' }}
-          className="float-left"
-          onClick={() => {
-            setEditOpen(!editOpen);
-          }}
-        >
-          <MdEdit />
-        </button> */}
         {title}
         <span id="arrowIcon" className="float-right">
           {isOpen ? <span>&#9650;</span> : <span>&#9660;</span>}
